@@ -6,7 +6,6 @@
             <class name="io.virtualan.test.demo.LakesideMutualExecuteTestPlanExecutor">
                 <methods>
                     <include name="workflowExecution_1"/>
-                    <include name="workflowExecution_2"/>
                 </methods>
             </class>
         </classes>
