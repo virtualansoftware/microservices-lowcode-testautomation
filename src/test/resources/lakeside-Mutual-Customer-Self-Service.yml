@@ -8,6 +8,9 @@ apiExecutor:
     cucumblanProperties:
       service.api.css: http://microservices.virtualandemo.com:8080
       service.api.quote: http://microservices.virtualandemo.com:8090
+      service.api.customer: http://microservices.virtualandemo.com:8100
+      service.api.cust: http://microservices.virtualandemo.com:8100
+
   - reportTitle: "Lakeside Mutual - Customer Self-Service - API and Database"
     env: test
     outputDir: target/LakesideMutual/Customer-Self-Service/2
