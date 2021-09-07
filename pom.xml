@@ -45,7 +45,7 @@
         <dependency>
             <groupId>io.virtualan</groupId>
             <artifactId>mapson</artifactId>
-            <version>1.1.8-SNAPSHOT</version>
+            <version>1.1.8</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
