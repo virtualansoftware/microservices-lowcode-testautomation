@@ -11,7 +11,7 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <slf4j.version>1.7.30</slf4j.version>
-        <idaithalam.version>1.3.13</idaithalam.version>
+        <idaithalam.version>1.3.14</idaithalam.version>
         <testng.ver>7.4.0</testng.ver>
         <java.version>1.8</java.version>
         <aspectj.version>1.8.4</aspectj.version>
@@ -57,6 +57,29 @@
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
             </plugin>
+<!--            <plugin>-->
+<!--                <groupId>net.masterthought</groupId>-->
+<!--                <artifactId>maven-cucumber-reporting</artifactId>-->
+<!--                <version>5.3.0</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>execution</id>-->
+<!--                        <phase>verify</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>generate</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <projectName>Sample-Cucumber-TestNG</projectName>-->
+<!--                            <skip>false</skip>-->
+<!--                            <outputDirectory>target/html-reports</outputDirectory>-->
+<!--                            <inputDirectory>${project.build.directory}</inputDirectory>-->
+<!--                            <jsonFiles>-->
+<!--                                <param>**/cucumber-*.json</param>-->
+<!--                            </jsonFiles>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 
