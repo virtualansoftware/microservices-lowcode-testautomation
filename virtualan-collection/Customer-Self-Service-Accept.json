@@ -1,7 +1,8 @@
 [
   {
-    "outputFields": "email=[email]",
+    "outputFields": {"email": "[email]"},
     "input": "{\"email\":\"[email]\",\"password\":\"[password]\"}",
+    "requestType": "REST",
     "method": "POST",
     "scenario": "Customer Self-Service Auth",
     "resource": "css",
@@ -17,14 +18,14 @@
         "key": "token"
       }
     ],
-    "type": "REST",
     "contentType": "application/json",
     "scenarioId": "CustomerSelfServiceAuth",
     "url": "/auth",
     "httpStatusCode": "200"
   },
   {
-    "outputFields": "email=[email]",
+    "outputFields": {"email": "[email]"},
+    "requestType": "REST",
     "method": "GET",
     "scenario": "GetCustomerByLogin",
     "resource": "css",
@@ -50,14 +51,14 @@
         "key": "startDate"
       }
     ],
-    "type": "REST",
     "contentType": "application/json",
     "scenarioId": "GetCustomerByLogin",
     "url": "/user",
     "httpStatusCode": "200"
   },
   {
-    "outputFields": "firstname=Max",
+    "outputFields": {"firstname": "Max"},
+    "requestType": "REST",
     "method": "GET",
     "scenario": "GetCustomerInfoByCustomerId",
     "resource": "css",
@@ -108,7 +109,6 @@
         "key": "success"
       }
     ],
-    "type": "REST",
     "contentType": "application/json",
     "scenarioId": "GetCustomerInfoByCustomerId",
     "url": "/customers/[customerId]",
@@ -116,6 +116,7 @@
   },
   {
     "input": "{\n    \"statusHistory\": [],\n    \"customerInfo\": {\n        \"customerId\": \"[customerId]\",\n        \"firstname\": \"[firstname]\",\n        \"lastname\": \"[lastname]\",\n        \"contactAddress\": {\n            \"streetAddress\": \"[streetAddress]\",\n            \"postalCode\": \"[postalCode]\",\n            \"city\": \"[city]\"\n        },\n        \"billingAddress\": {\n            \"streetAddress\": \"[streetAddress]\",\n            \"postalCode\": \"[postalCode]\",\n            \"city\": \"[city]\"\n        }\n    },\n    \"insuranceOptions\": {\n        \"startDate\": \"[startDate]\",\n        \"insuranceType\": \"[insuranceType]\",\n        \"deductible\": {\n            \"amount\": 500,\n            \"currency\": \"CHF\"\n        }\n    }\n}",
+    "requestType": "REST",
     "method": "POST",
     "scenario": "CreateInsuranceQuote",
     "resource": "css",
@@ -141,15 +142,15 @@
         "key": "insuranceType"
       }
     ],
-    "type": "REST",
     "contentType": "application/json",
     "scenarioId": "CreateInsuranceQuote",
     "url": "/insurance-quote-requests",
     "httpStatusCode": "200"
   },
   {
-    "outputFields": "id=[quoteId]",
+    "outputFields": {"id": "[quoteId]"},
     "input": "{\n    \"status\": \"QUOTE_RECEIVED\",\n    \"expirationDate\": \"2022-09-21T04:59:00.000Z\",\n    \"insurancePremium\": {\n        \"amount\": 500,\n        \"currency\": \"CHF\"\n    },\n    \"policyLimit\": {\n        \"amount\": 50000,\n        \"currency\": \"CHF\"\n    }\n}",
+    "requestType": "REST",
     "method": "PATCH",
     "scenario": "ReceiveInsuranceQuote",
     "resource": "quote",
@@ -165,19 +166,22 @@
         "key": "X-Auth-Token"
       }
     ],
-    "type": "REST",
     "contentType": "application/json",
     "scenarioId": "ReceiveInsuranceQuote",
     "url": "/insurance-quote-requests/[quoteId]",
     "httpStatusCode": "200"
   },
   {
-    "outputFields": "id=[quoteId]",
+    "outputFields": {"id": "[quoteId]"},
     "input": "{\n    \"status\": \"QUOTE_ACCEPTED\" \n}",
+    "requestType": "REST",
     "method": "PATCH",
     "scenario": "AcceptInsuranceQuote",
     "resource": "css",
-    "csvson": "statusHistory/status\nREQUEST_SUBMITTED\\|QUOTE_RECEIVED\\|QUOTE_ACCEPTED\\|",
+    "csvson": [
+      "statusHistory/status",
+      "REQUEST_SUBMITTED\\|QUOTE_RECEIVED\\|QUOTE_ACCEPTED\\|"
+    ],
     "availableParams": [
       {
         "parameterType": "HEADER_PARAM",
@@ -190,7 +194,6 @@
         "key": "X-Auth-Token"
       }
     ],
-    "type": "REST",
     "contentType": "application/json",
     "scenarioId": "AcceptInsuranceQuote",
     "url": "/insurance-quote-requests/[quoteId]",
