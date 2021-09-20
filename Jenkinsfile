@@ -1,33 +1,41 @@
 pipeline {
     agent any
-    
+    parameters {
+        choice(
+                name: 'Execute Tests',
+                choices: ['Dev', 'SIT', 'UAT'],
+                description: 'Select Environment to deploy')
+    }
     environment {
-        IDAITHALAM               = 'PROD'
+        IDAITHALAM = 'PROD'
+        EMAIL_ID = "elan.thangamani@virtualan.io"
         IDAITHALAM_EXECUTION_ENV = 'test'
+
     }
-    
-    tools {
-        maven "Maven"
-    }
-    
     stages {
-        stage ('Compile Stage') {
+
+        stage('Execute Test') {
+
             steps {
-                  bat 'mvn clean compile'
+
+                withMaven(jdk: 'JAVA_8', maven: 'Maven 3.3.9') {
+
+                    sh "mvn clean test"
+
+                }
+
+
             }
         }
-        stage ('Testing Stage') {
-            steps {
-                
-                    bat 'mvn test'
-            }
-        }
-        
+
+
     }
-   
-     post {
-            always {
-                cucumber '**/cucumber-*.json'
-            }
-         }   
+
+    post {
+        always {
+            cucumber '**/cucumber-*.json'
+
+        }
+    }
+
 }
