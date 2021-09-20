@@ -20,12 +20,15 @@ pipeline {
 
     stages {
 
-        stage('Execute Test') {
-
+        stage ('Compile Stage') {
+            steps {
+                  bat 'mvn clean compile'
+            }
+        }
+        stage ('Testing Stage') {
             steps {
 
-                    sh "mvn clean test"
-
+                    bat 'mvn test'
             }
         }
 
