@@ -12,18 +12,19 @@ pipeline {
         IDAITHALAM_EXECUTION_ENV = 'test'
 
     }
+
+
+    tools {
+        maven "Maven"
+    }
+
     stages {
 
         stage('Execute Test') {
 
             steps {
 
-                withMaven(jdk: 'JAVA_8', maven: 'Maven 3.3.9') {
-
                     sh "mvn clean test"
-
-                }
-
 
             }
         }
