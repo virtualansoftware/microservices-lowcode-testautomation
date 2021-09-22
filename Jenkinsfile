@@ -2,10 +2,11 @@ pipeline {
     agent any
     parameters {
         choice(
-                name: 'Execute Tests',
-                choices: ['Dev', 'SIT', 'UAT'],
-                description: 'Select Environment to deploy')
+          name: 'IDAITHALAM_EXECUTION_ENV',
+          choices: ['Dev', 'test', 'SIT', 'UAT'],
+          description: 'Select Environment to Test')
     }
+
     environment {
         IDAITHALAM = 'PROD'
         EMAIL_ID = "elan.thangamani@virtualan.io"
