@@ -134,7 +134,7 @@
   },
   {
     "outputFields": {"id": "[rejectQuoteId]"},
-    "input": "{\n    \"status\": \"QUOTE_RECEIVED\",\n    \"expirationDate\": \"2021-09-21T04:59:00.000Z\",\n    \"insurancePremium\": {\n        \"amount\": 500,\n        \"currency\": \"CHF\"\n    },\n    \"policyLimit\": {\n        \"amount\": 50000,\n        \"currency\": \"CHF\"\n    }\n}",
+    "input": "{\n    \"status\": \"QUOTE_RECEIVED\",\n    \"expirationDate\": \"2021-11-21T04:59:00.000Z\",\n    \"insurancePremium\": {\n        \"amount\": 500,\n        \"currency\": \"CHF\"\n    },\n    \"policyLimit\": {\n        \"amount\": 50000,\n        \"currency\": \"CHF\"\n    }\n}",
     "requestType": "REST",
     "method": "PATCH",
     "scenario": "ReceiveInsuranceQuoteToReject",
