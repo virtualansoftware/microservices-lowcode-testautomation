@@ -1,18 +1,5 @@
 pipeline {
     agent any
-    parameters {
-        choice(
-          name: 'IDAITHALAM_EXECUTION_ENV',
-          choices: ['Dev', 'test', 'SIT', 'UAT'],
-          description: 'Select Environment to Test')
-    }
-
-    environment {
-        IDAITHALAM = 'PROD'
-        EMAIL_ID = "elan.thangamani@virtualan.io"
-        IDAITHALAM_EXECUTION_ENV = 'test'
-
-    }
 
 
     tools {
