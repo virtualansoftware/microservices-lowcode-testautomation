@@ -111,5 +111,28 @@
     "scenarioId": "RiskFactor-DirtectResponse",
     "url": "/api/riskfactor/compute",
     "httpStatusCode": "200"
+  },
+  {
+    "requestType": "REST",
+    "method": "GET",
+    "scenario": "Read Customer infos - Find last element",
+    "resource": "quote",
+    "availableParams": [
+      {
+        "parameterType": "HEADER_PARAM",
+        "value": "application/json",
+        "key": "contentType"
+      },
+      {
+        "parameterType": "STORAGE_PARAM",
+        "value": "customers[-1].customerId",
+        "key": "id"
+      }
+    ],
+    "contentType": "application/json",
+    "scenarioId": "ReadCustomers-FindLast",
+    "url": "/customers",
+    "tags": "@examples",
+    "httpStatusCode": "200"
   }
 ]
