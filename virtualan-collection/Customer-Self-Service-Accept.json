@@ -49,6 +49,11 @@
         "parameterType": "EVAL_PARAM",
         "value": "TEXT(TODAY(),\"yyyy-mm-dd\")",
         "key": "startDate"
+      },
+      {
+        "parameterType": "EVAL_PARAM",
+        "value": "SUBSTITUTE(TEXT(NOW()+365, \"yyyy-mm-dd HH:mm:ss\"), \" \", \"T\")",
+        "key": "expiryDate"
       }
     ],
     "contentType": "application/json",
@@ -149,7 +154,7 @@
   },
   {
     "outputFields": {"id": "[quoteId]"},
-    "input": "{\n    \"status\": \"QUOTE_RECEIVED\",\n    \"expirationDate\": \"2022-10-21T04:59:00.000Z\",\n    \"insurancePremium\": {\n        \"amount\": 500,\n        \"currency\": \"CHF\"\n    },\n    \"policyLimit\": {\n        \"amount\": 50000,\n        \"currency\": \"CHF\"\n    }\n}",
+    "input": "{\n    \"status\": \"QUOTE_RECEIVED\",\n    \"expirationDate\": \"[expiryDate].000Z\",\n    \"insurancePremium\": {\n        \"amount\": 500,\n        \"currency\": \"CHF\"\n    },\n    \"policyLimit\": {\n        \"amount\": 50000,\n        \"currency\": \"CHF\"\n    }\n}",
     "requestType": "REST",
     "method": "PATCH",
     "scenario": "ReceiveInsuranceQuote",
