@@ -1,0 +1,25 @@
+parallelExecution: 4
+timeout:  1
+apiExecutor:
+  - reportTitle: "Lakeside Mutual - Customer Self-Service - API alone"
+    env: test
+    outputDir: target/LakesideMutual/Customer-Self-Service/Excel/EXCEL
+    inputExcel: css/customer-self-service.xlsx
+    outputJsonDir: target/idaithalam
+    cucumblanProperties:
+      service.api.css: http://microservices.virtualandemo.com:8080
+      service.api.quote: http://microservices.virtualandemo.com:8090
+      service.api.customer: http://microservices.virtualandemo.com:8100
+      service.api.cust: http://microservices.virtualandemo.com:8100
+  - reportTitle: "Lakeside Mutual - Customer Self-Service - API and Database"
+    outputJsonDir: target/idaithalam
+    env: test
+    outputDir: target/LakesideMutual/Customer-Self-Service/DB
+    inputExcel: css/customer-self-service-with-db.xlsx
+    cucumblanProperties:
+      service.api.css: http://microservices.virtualandemo.com:8080
+      service.api.quote: http://microservices.virtualandemo.com:8090
+      css.cucumblan.jdbc.driver-class-name: com.mysql.jdbc.Driver
+      css.cucumblan.jdbc.username: idaithalam_user
+      css.cucumblan.jdbc.password: Asdf!2#4
+      css.cucumblan.jdbc.url: jdbc:mysql://microservices.virtualandemo.com:3306/customerselfservice?serverTimezone=UTC

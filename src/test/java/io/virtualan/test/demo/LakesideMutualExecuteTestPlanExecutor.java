@@ -21,7 +21,9 @@ public class LakesideMutualExecuteTestPlanExecutor {
     }
   }
 
-  @Test
+  // Using VIRTUALAN Collection
+  // To run Performance testing of the system
+  @Test(threadPoolSize = 4, invocationCount = 4, timeOut = 10000)
   public void workflowExecution_1() {
     try {
       boolean isSuccess = VirtualanTestPlanExecutor
@@ -32,5 +34,18 @@ public class LakesideMutualExecuteTestPlanExecutor {
       Assert.assertTrue(false);
     }
   }
+
+  @Test
+  public void workflowExecution_xl() {
+    try {
+      boolean isSuccess = VirtualanTestPlanExecutor
+              .invoke("Customer-Self-Service-xl.yml");
+      Assert.assertTrue(isSuccess);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+      Assert.assertTrue(false);
+    }
+  }
+
 
 }
