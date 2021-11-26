@@ -1,9 +1,9 @@
-parallelExecution: 4
+parallelExecution: 2
 timeout:  1
 apiExecutor:
   - reportTitle: "Lakeside Mutual - Customer Self-Service - API alone - VIRTUALAN"
     env: test-virtualan-collection
-    outputDir: target/LakesideMutual/Customer-Self-Service/JSON
+    outputDir: LakesideMutual/Customer-Self-Service/JSON
     virtualanSpecPath: virtualan-collection
     outputJsonDir: target/idaithalam
     cucumblanProperties:
@@ -18,3 +18,6 @@ apiExecutor:
       css.cucumblan.jdbc.username: idaithalam_user
       css.cucumblan.jdbc.password: Asdf!2#4
       css.cucumblan.jdbc.url: jdbc:mysql://microservices.virtualandemo.com:3306/customerselfservice?serverTimezone=UTC
+    cucumblanEnvProperties:
+      email: admin@example.com
+      password: 1password
