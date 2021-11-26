@@ -23,7 +23,7 @@ public class LakesideMutualExecuteTestPlanExecutor {
 
   // Using VIRTUALAN Collection
   // To run Performance testing of the system
-  @Test(threadPoolSize = 2, invocationCount = 2, timeOut = 10000)
+  @Test(threadPoolSize = 2, invocationCount = 1, timeOut = 10000)
   public void workflowExecution_1() {
     try {
       boolean isSuccess = VirtualanTestPlanExecutor
