@@ -1,10 +1,10 @@
-Feature: Examples - Workflow
+Feature: Examples
 
   Scenario: Load initial set of data
     Given Provided all the feature level parameters from file
 
   @examples @api
-  Scenario: Read Customer infos - Example-case1 - GET api call
+  Scenario: Read Customer infos - Example-case1 - api call
     Given a user perform a api action
     And add request with given header params
       | contentType | application/json |
@@ -15,7 +15,7 @@ Feature: Examples - Workflow
       | 1955-10-28,Bill,Gates,2020-08-30T20:28:36.267Z,Tamil:Spanish:English,bgates                                            |
 
   @examples @api
-  Scenario: Read Customer infos - Example-case2 - GET api call
+  Scenario: Read Customer infos - Example-case2 - api call
     Given a user perform a api action
     And add request with given header params
       | contentType | application/json |
@@ -26,7 +26,7 @@ Feature: Examples - Workflow
       | 1955-10-28,Gates,Bill,2020-08-30T20:28:36.267Z,Tamil:Spanish:English                                          |
 
   @examples @api
-  Scenario: Read Customer infos - Example-case3 - GET api call
+  Scenario: Read Customer infos - Example-case3 - api call
     Given a user perform a api action
     And add request with given header params
       | contentType | application/json |
@@ -37,7 +37,7 @@ Feature: Examples - Workflow
       | 1955-10-28,Bill,Gates,2020-08-30T20:28:36.267Z,Tamil:English:Spanish,bgates                                            |
 
   @examples @quote
-  Scenario: Read Customer infos - Exact-Order-Match - GET api call
+  Scenario: Read Customer infos - Exact-Order-Match - api call
     Given a user perform a api action
     And add request with given header params
       | contentType | application/json |
@@ -52,7 +52,7 @@ Feature: Examples - Workflow
       | customers.find { it.customerId == 'f2m0v9b73c' }.email     | blangman14@example.com |
 
   @examples @quote
-  Scenario: Read Customer infos - Find last element - GET api call
+  Scenario: Read Customer infos - Find last element - api call
     Given a user perform a api action
     And add request with given header params
       | contentType | application/json |
@@ -61,7 +61,7 @@ Feature: Examples - Workflow
     And Store the customers[-1].customerId value of the key as id
 
   @examples @api
-  Scenario: RiskFactor-DirtectResponse - POST api call
+  Scenario: RiskFactor-DirtectResponse - api call
     Given a user perform a api action
     And add request with given header params
       | contentType | application/json |

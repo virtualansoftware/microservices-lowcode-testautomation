@@ -4,7 +4,7 @@ Feature: Graphql-Example - Workflow
     Given Provided all the feature level parameters from file
 
   @graphql @graphql
-  Scenario: Create user with Graphql - POST api call
+  Scenario: Create user with Graphql - api call
     Given a user perform a api action
     And Add the suki value of the key as name
     And Add the 13 value of the key as age
@@ -24,7 +24,7 @@ Feature: Graphql-Example - Workflow
     And Store the data.createAuthor.id value of the key as id
 
   @graphql @graphql
-  Scenario: Create another user with Graphql - POST api call
+  Scenario: Create another user with Graphql - api call
     Given a user perform a api action
     And Add the sri value of the key as name2
     And Add the 8 value of the key as age2
@@ -44,7 +44,7 @@ Feature: Graphql-Example - Workflow
     And Store the data.createAuthor.id value of the key as id2
 
   @graphql
-  Scenario: Read user - using graphql - POST api call
+  Scenario: Read user - using graphql - api call
     Given a user perform a api action
     And add request with given header params
       | contentType | application/json |

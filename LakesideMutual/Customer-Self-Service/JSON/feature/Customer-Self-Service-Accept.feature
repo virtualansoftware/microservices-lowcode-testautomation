@@ -1,10 +1,10 @@
-Feature: CSS-Accept-DB - Workflow
+Feature: Customer-Self-Service-Accept
 
   Scenario: Load initial set of data
     Given Provided all the feature level parameters from file
 
-  @css
-  Scenario: Customer Self-Service Auth - POST api call
+  @elan @IDAITHALAM-8 @css
+  Scenario: Customer Self-Service Auth - api call
     Given a user perform a api action
     And add request with given header params
       | contentType | application/json |
@@ -18,7 +18,7 @@ Feature: CSS-Accept-DB - Workflow
     And Store the token value of the key as token
 
   @css
-  Scenario: GetCustomerByLogin - GET api call
+  Scenario: GetCustomerByLogin - api call
     Given a user perform a api action
     And add request with given header params
       | contentType  | application/json |
@@ -32,7 +32,7 @@ Feature: CSS-Accept-DB - Workflow
     And evaluate the TEXT(TODAY(),"yyyy-mm-dd") function value of the key as startDate
 
   @css
-  Scenario: GetCustomerInfoByCustomerId - GET api call
+  Scenario: GetCustomerInfoByCustomerId - api call
     Given a user perform a api action
     And add request with given header params
       | contentType  | application/json |
@@ -47,10 +47,12 @@ Feature: CSS-Accept-DB - Workflow
     And Store the streetAddress value of the key as streetAddress
     And Store the postalCode value of the key as postalCode
     And Store the city value of the key as city
+    And evaluate the LEN("[firstname]")=3 condition success
 
   @css
-  Scenario: CreateInsuranceQuote - POST api call
+  Scenario: CreateInsuranceQuote - api call
     Given a user perform a api action
+    And Add the Life Insurance value of the key as insuranceType
     And add request with given header params
       | contentType  | application/json |
       | X-Auth-Token | [token]          |
@@ -66,14 +68,14 @@ Feature: CSS-Accept-DB - Workflow
       | customerInfo.lastname                     | [lastname]      |
       | insuranceOptions.deductible.amount        | i~500           |
       | insuranceOptions.deductible.currency      | CHF             |
-      | insuranceOptions.insuranceType            | Life Insurance  |
-      | insuranceOptions.startDate                | 2021-06-20      |
+      | insuranceOptions.insuranceType            | [insuranceType] |
+      | insuranceOptions.startDate                | [startDate]     |
     When a user post application/json in /insurance-quote-requests resource on css
     Then Verify the status code is 200
     And Store the id value of the key as quoteId
 
   @quote
-  Scenario: ReceiveInsuranceQuote - PATCH api call
+  Scenario: ReceiveInsuranceQuote - api call
     Given a user perform a api action
     And add request with given header params
       | contentType  | application/json |
@@ -91,7 +93,7 @@ Feature: CSS-Accept-DB - Workflow
       | id | [quoteId] |
 
   @css
-  Scenario: AcceptInsuranceQuote - PATCH api call
+  Scenario: AcceptInsuranceQuote - api call
     Given a user perform a api action
     And add request with given header params
       | contentType  | application/json |
@@ -105,14 +107,3 @@ Feature: CSS-Accept-DB - Workflow
       | REQUEST_SUBMITTED\|QUOTE_RECEIVED\|QUOTE_ACCEPTED\| |
     And Verify across response includes following in the response
       | id | [quoteId] |
-
-  @css
-  Scenario: InsuranceQuoteByDB - database action
-    Given As a user perform sql verify record action
-    When Select details with the given sql verify record on css
-      | select iqr.id, iq.insurance_premium_amount, iq.insurance_premium_currency, iq.policy_limit_amount from insurancequotes iq INNER JOIN insurancequoterequests iqr on iq.id = iqr.insurance_quote_id and iqr.id  =  [quoteId] |
-    Then Verify details with the given sql verify record on css
-      | select iqr.id, iq.insurance_premium_amount, iq.insurance_premium_currency, iq.policy_limit_amount from insurancequotes iq INNER JOIN insurancequoterequests iqr on iq.id = iqr.insurance_quote_id and iqr.id  =  [quoteId] |
-      | id,insurance_premium_amount, insurance_premium_currency, policy_limit_amount                                                                                                                                               |
-      | i~[quoteId],d~500.00,CHF,d~50000.00                                                                                                                                                                                        |
-    And Store-sql's [0].policy_limit_amount value of the key as policy_limit_amount

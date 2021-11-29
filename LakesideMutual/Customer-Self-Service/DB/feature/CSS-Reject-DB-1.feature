@@ -4,7 +4,7 @@ Feature: CSS-Reject-DB - Workflow
     Given Provided all the feature level parameters from file
 
   @css
-  Scenario: Customer Self-Service Auth - POST api call
+  Scenario: Customer Self-Service Auth - api call
     Given a user perform a api action
     And add request with given header params
       | contentType | application/json |
@@ -18,7 +18,7 @@ Feature: CSS-Reject-DB - Workflow
     And Store the token value of the key as token
 
   @css
-  Scenario: GetCustomerByLogin - GET api call
+  Scenario: GetCustomerByLogin - api call
     Given a user perform a api action
     And add request with given header params
       | contentType  | application/json |
@@ -32,7 +32,7 @@ Feature: CSS-Reject-DB - Workflow
     And evaluate the TEXT(TODAY(),"yyyy-mm-dd") function value of the key as startDate
 
   @css
-  Scenario: GetCustomerInfoByCustomerId - GET api call
+  Scenario: GetCustomerInfoByCustomerId - api call
     Given a user perform a api action
     And add request with given header params
       | contentType  | application/json |
@@ -49,7 +49,7 @@ Feature: CSS-Reject-DB - Workflow
     And Store the city value of the key as city
 
   @css
-  Scenario: CreateInsuranceQuoteForReject - POST api call
+  Scenario: CreateInsuranceQuoteForReject - api call
     Given a user perform a api action
     And add request with given header params
       | contentType  | application/json |
@@ -73,7 +73,7 @@ Feature: CSS-Reject-DB - Workflow
     And Store the id value of the key as rejectQuoteId
 
   @quote
-  Scenario: ReceiveInsuranceQuoteToReject - PATCH api call
+  Scenario: ReceiveInsuranceQuoteToReject - api call
     Given a user perform a api action
     And add request with given header params
       | contentType  | application/json |
@@ -91,7 +91,7 @@ Feature: CSS-Reject-DB - Workflow
       | id | [rejectQuoteId] |
 
   @css
-  Scenario: RejectInsuranceQuote - PATCH api call
+  Scenario: RejectInsuranceQuote - api call
     Given a user perform a api action
     And add request with given header params
       | contentType  | application/json |

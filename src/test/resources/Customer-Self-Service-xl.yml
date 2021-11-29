@@ -23,6 +23,7 @@ apiExecutor:
     outputDir: LakesideMutual/Customer-Self-Service/DB
     inputExcel: css/customer-self-service-with-db.xlsx
     virtualanSpecPath: virtualan-collection
+    execution: EXECUTE
     cucumblanProperties:
       service.api.css: http://microservices.virtualandemo.com:8080
       service.api.quote: http://microservices.virtualandemo.com:8090
