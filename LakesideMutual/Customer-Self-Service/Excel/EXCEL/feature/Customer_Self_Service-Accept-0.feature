@@ -3,8 +3,8 @@ Feature: Customer Self Service-Accept - Workflow
   Scenario: Load initial set of data
     Given Provided all the feature level parameters from file
 
-  @elan  @IDAITHALAM-8 @css
-  Scenario: Customer Self-Service Auth - POST api call
+  @elan @IDAITHALAM-8 @css
+  Scenario: Customer Self-Service Auth - api call
     Given a user perform a api action
     And add request with given header params
       | contentType | application/json |
@@ -18,7 +18,7 @@ Feature: Customer Self Service-Accept - Workflow
     And Store the token value of the key as token
 
   @css
-  Scenario: GetCustomerByLogin - GET api call
+  Scenario: GetCustomerByLogin - api call
     Given a user perform a api action
     And Add the 500 value of the key as insurancePremiumAmount
     And add request with given header params
@@ -33,7 +33,7 @@ Feature: Customer Self Service-Accept - Workflow
     And evaluate the TEXT(TODAY(),"yyyy-mm-dd") function value of the key as startDate
 
   @css
-  Scenario: GetCustomerInfoByCustomerId - GET api call
+  Scenario: GetCustomerInfoByCustomerId - api call
     Given a user perform a api action
     And add request with given header params
       | contentType  | application/json |
@@ -51,7 +51,7 @@ Feature: Customer Self Service-Accept - Workflow
     And evaluate the LEN("[firstname]")=3 condition success
 
   @css
-  Scenario: CreateInsuranceQuote - POST api call
+  Scenario: CreateInsuranceQuote - api call
     Given a user perform a api action
     And Add the Life Insurance value of the key as insuranceType
     And add request with given header params
@@ -76,7 +76,7 @@ Feature: Customer Self Service-Accept - Workflow
     And Store the id value of the key as quoteId
 
   @quote
-  Scenario: ReceiveInsuranceQuote - PATCH api call
+  Scenario: ReceiveInsuranceQuote - api call
     Given a user perform a api action
     And add request with given header params
       | contentType  | application/json |
@@ -94,7 +94,7 @@ Feature: Customer Self Service-Accept - Workflow
       | id | [quoteId] |
 
   @css
-  Scenario: AcceptInsuranceQuote - PATCH api call
+  Scenario: AcceptInsuranceQuote - api call
     Given a user perform a api action
     And add request with given header params
       | contentType  | application/json |
