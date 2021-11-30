@@ -6,6 +6,7 @@ apiExecutor:
     outputDir: LakesideMutual/Customer-Self-Service/Excel/EXCEL
     inputExcel: css/customer-self-service.xlsx
     outputJsonDir: target/idaithalam
+    virtualanSpecPath: virtualan-collection
     cucumblanProperties:
       service.api.css: http://microservices.virtualandemo.com:8080
       service.api.quote: http://microservices.virtualandemo.com:8090

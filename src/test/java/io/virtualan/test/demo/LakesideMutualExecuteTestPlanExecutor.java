@@ -21,9 +21,21 @@ public class LakesideMutualExecuteTestPlanExecutor {
     }
   }
 
-  // Using VIRTUALAN Collection
-  // To run Performance testing of the system
-  @Test(threadPoolSize = 1, invocationCount = 1)
+  @Test
+  public void workflowExecution_xl() {
+    try {
+      boolean isSuccess = VirtualanTestPlanExecutor
+              .invoke("Customer-Self-Service-xl.yml");
+      Assert.assertTrue(isSuccess);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+      Assert.assertTrue(false);
+    }
+  }
+
+//   Using VIRTUALAN Collection
+//   To run Performance testing of the system
+//  @Test(threadPoolSize = 1, invocationCount = 1)
   public void workflowExecution_1() {
     try {
       boolean isSuccess = VirtualanTestPlanExecutor
@@ -35,11 +47,13 @@ public class LakesideMutualExecuteTestPlanExecutor {
     }
   }
 
-  @Test
-  public void workflowExecution_xl() {
+
+//Uncomment and try
+//  @Test
+  public void workflowExecution_xl_db() {
     try {
       boolean isSuccess = VirtualanTestPlanExecutor
-              .invoke("Customer-Self-Service-xl.yml");
+              .invoke("Customer-Self-Service-xl-db.yml");
       Assert.assertTrue(isSuccess);
     } catch (InterruptedException e) {
       e.printStackTrace();
