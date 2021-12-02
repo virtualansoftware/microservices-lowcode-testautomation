@@ -49,7 +49,7 @@ public class LakesideMutualExecuteTestPlanExecutor {
 
 
 //Uncomment and try
-//  @Test
+  @Test
   public void workflowExecution_xl_db() {
     try {
       boolean isSuccess = VirtualanTestPlanExecutor

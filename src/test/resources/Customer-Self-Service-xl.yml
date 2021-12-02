@@ -14,5 +14,5 @@ apiExecutor:
       service.api.api: https://live.virtualandemo.com
       service.api.graphql: http://microservices.virtualandemo.com:8091
     cucumblanEnvProperties:
-      email: admin@example.com
+      email: idaithalam@admin.com
       password: 1password
