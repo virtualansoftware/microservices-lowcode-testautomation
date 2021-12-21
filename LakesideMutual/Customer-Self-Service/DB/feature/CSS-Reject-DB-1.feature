@@ -1,5 +1,5 @@
-Feature: Customer Self-Service-Reject - Workflow
-  Feature: Customer Self-Service-Reject - Workflow
+Feature: CSS-Reject-DB - Workflow
+  Feature: CSS-Reject-DB - Workflow
 
   Scenario: Load initial set of data
     Given Provided all the feature level parameters from file
@@ -68,7 +68,7 @@ Feature: Customer Self-Service-Reject - Workflow
       | insuranceOptions.deductible.amount        | i~500           |
       | insuranceOptions.deductible.currency      | CHF             |
       | insuranceOptions.insuranceType            | Life Insurance  |
-      | insuranceOptions.startDate                | 2021-06-20      |
+      | insuranceOptions.startDate                | 2021-09-20      |
     When a user post application/json in /insurance-quote-requests resource on css
     Then the status code is 200
     And Store the id value of the key as rejectQuoteId
@@ -108,3 +108,10 @@ Feature: Customer Self-Service-Reject - Workflow
       | QUOTE_REJECTED    |
     And Verify across response includes following in the response
       | id | [rejectQuoteId] |
+
+  @css
+  Scenario: InsuranceQuoteByDBReject - database action
+    Given As a user perform sql  action
+    When Select details with the given sql  on css
+      | select iqr.id, iq.insurance_premium_amount, iq.insurance_premium_currency, iq.policy_limit_amount from insurancequotes iq INNER JOIN insurancequoterequests iqr on iq.id = iqr.insurance_quote_id and iqr.id  =  [rejectQuoteId] |
+    And Store-sql's [0].policy_limit_amount value of the key as policy_limit_amount

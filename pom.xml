@@ -10,11 +10,8 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <slf4j.version>1.7.30</slf4j.version>
-        <idaithalam.version>1.4.3</idaithalam.version>
+        <idaithalam.version>1.4.4</idaithalam.version>
         <testng.ver>7.4.0</testng.ver>
-        <java.version>1.8</java.version>
-        <aspectj.version>1.8.4</aspectj.version>
     </properties>
     <dependencies>
         <dependency>
@@ -22,21 +19,10 @@
             <artifactId>idaithalam</artifactId>
             <version>${idaithalam.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.ver}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>${slf4j.version}</version>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>

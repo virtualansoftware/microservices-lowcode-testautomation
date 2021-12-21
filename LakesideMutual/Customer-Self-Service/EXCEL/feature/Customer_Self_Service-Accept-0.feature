@@ -1,4 +1,5 @@
 Feature: Customer Self Service-Accept - Workflow
+  Feature: Customer Self Service-Accept - Workflow
 
   Scenario: Load initial set of data
     Given Provided all the feature level parameters from file
@@ -12,7 +13,7 @@ Feature: Customer Self Service-Accept - Workflow
       | password | [password] |
       | email    | [email]    |
     When a user post application/json in /auth resource on css
-    Then Verify the status code is 200
+    Then the status code is 200
     And Verify across response includes following in the response
       | email | [email] |
     And Store the token value of the key as token
@@ -25,7 +26,7 @@ Feature: Customer Self Service-Accept - Workflow
       | contentType  | application/json |
       | X-Auth-Token | [token]          |
     When a user get application/json in /user resource on css
-    Then Verify the status code is 200
+    Then the status code is 200
     And Verify across response includes following in the response
       | email | [email] |
     And Store the customerId value of the key as customerId
@@ -39,7 +40,7 @@ Feature: Customer Self Service-Accept - Workflow
       | contentType  | application/json |
       | X-Auth-Token | [token]          |
     When a user get application/json in /customers/[customerId] resource on css
-    Then Verify the status code is 200
+    Then the status code is 200
     And Verify across response includes following in the response
       | firstname | Max |
     And Store the customerId value of the key as customerId
@@ -72,7 +73,7 @@ Feature: Customer Self Service-Accept - Workflow
       | insuranceOptions.insuranceType            | [insuranceType] |
       | insuranceOptions.startDate                | [startDate]     |
     When a user post application/json in /insurance-quote-requests resource on css
-    Then Verify the status code is 200
+    Then the status code is 200
     And Store the id value of the key as quoteId
 
   @quote
@@ -89,7 +90,7 @@ Feature: Customer Self Service-Accept - Workflow
       | status                    | QUOTE_RECEIVED           |
       | expirationDate            | [expiryDate].000Z        |
     When a user patch application/json in /insurance-quote-requests/[quoteId] resource on quote
-    Then Verify the status code is 200
+    Then the status code is 200
     And Verify across response includes following in the response
       | id | [quoteId] |
 
@@ -102,7 +103,7 @@ Feature: Customer Self Service-Accept - Workflow
     And Update api with given input
       | status | QUOTE_ACCEPTED |
     When a user patch application/json in /insurance-quote-requests/[quoteId] resource on css
-    Then Verify the status code is 200
+    Then the status code is 200
     And Verify api response csvson includes in the response
       | statusHistory/status                                |
       | REQUEST_SUBMITTED\|QUOTE_RECEIVED\|QUOTE_ACCEPTED\| |

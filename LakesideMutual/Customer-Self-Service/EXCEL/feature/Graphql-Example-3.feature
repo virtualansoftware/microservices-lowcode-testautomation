@@ -1,4 +1,5 @@
 Feature: Graphql-Example - Workflow
+  Feature: Graphql-Example - Workflow
 
   Scenario: Load initial set of data
     Given Provided all the feature level parameters from file
@@ -15,7 +16,7 @@ Feature: Graphql-Example - Workflow
       | variables.age  | i~0                                                                           |
       | query          | mutation {\n createAuthor(\n name: "[name]",\n age: [age]) {\n id name\n }\n} |
     When a user post application/json in /apis/graphql resource on graphql
-    Then Verify the status code is 200
+    Then the status code is 200
     And Verify api response csvson includes in the response
       | data.createAuthor/name |
       | [name]                 |
@@ -35,7 +36,7 @@ Feature: Graphql-Example - Workflow
       | variables.age  | i~0                                                                             |
       | query          | mutation {\n createAuthor(\n name: "[name2]",\n age: [age2]) {\n id name\n }\n} |
     When a user post application/json in /apis/graphql resource on graphql
-    Then Verify the status code is 200
+    Then the status code is 200
     And Verify api response csvson includes in the response
       | data.createAuthor/name |
       | [name2]                |
@@ -51,7 +52,7 @@ Feature: Graphql-Example - Workflow
     And Create api with given input
       | query | query findAllAuthors {\n findAllAuthors {\n id\n name\n age\n }\n} |
     When a user post application/json in /apis/graphql resource on graphql
-    Then Verify the status code is 200
+    Then the status code is 200
     And Verify data.findAllAuthors response csvson includes in the response
       | id,name,age        |
       | [id],[name], i~13  |

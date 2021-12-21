@@ -1,5 +1,5 @@
-Feature: Examples - Workflow
-  Feature: Examples - Workflow
+Feature: Examples
+  Feature: Examples
 
   Scenario: Load initial set of data
     Given Provided all the feature level parameters from file

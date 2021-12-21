@@ -1,10 +1,10 @@
-Feature: Customer Self-Service-Reject - Workflow
-  Feature: Customer Self-Service-Reject - Workflow
+Feature: Customer-Self-Service-Accept
+  Feature: Customer-Self-Service-Accept
 
   Scenario: Load initial set of data
     Given Provided all the feature level parameters from file
 
-  @css
+  @elan @IDAITHALAM-8 @css
   Scenario: Customer Self-Service Auth - api call
     Given a user perform a api action
     And add request with given header params
@@ -48,10 +48,12 @@ Feature: Customer Self-Service-Reject - Workflow
     And Store the streetAddress value of the key as streetAddress
     And Store the postalCode value of the key as postalCode
     And Store the city value of the key as city
+    And evaluate the LEN("[firstname]")=3 condition success
 
   @css
-  Scenario: CreateInsuranceQuoteForReject - api call
+  Scenario: CreateInsuranceQuote - api call
     Given a user perform a api action
+    And Add the Life Insurance value of the key as insuranceType
     And add request with given header params
       | contentType  | application/json |
       | X-Auth-Token | [token]          |
@@ -67,14 +69,14 @@ Feature: Customer Self-Service-Reject - Workflow
       | customerInfo.lastname                     | [lastname]      |
       | insuranceOptions.deductible.amount        | i~500           |
       | insuranceOptions.deductible.currency      | CHF             |
-      | insuranceOptions.insuranceType            | Life Insurance  |
-      | insuranceOptions.startDate                | 2021-06-20      |
+      | insuranceOptions.insuranceType            | [insuranceType] |
+      | insuranceOptions.startDate                | [startDate]     |
     When a user post application/json in /insurance-quote-requests resource on css
     Then the status code is 200
-    And Store the id value of the key as rejectQuoteId
+    And Store the id value of the key as quoteId
 
   @quote
-  Scenario: ReceiveInsuranceQuoteToReject - api call
+  Scenario: ReceiveInsuranceQuote - api call
     Given a user perform a api action
     And add request with given header params
       | contentType  | application/json |
@@ -86,25 +88,23 @@ Feature: Customer Self-Service-Reject - Workflow
       | policyLimit.currency      | CHF               |
       | status                    | QUOTE_RECEIVED    |
       | expirationDate            | [expiryDate].000Z |
-    When a user patch application/json in /insurance-quote-requests/[rejectQuoteId] resource on quote
+    When a user patch application/json in /insurance-quote-requests/[quoteId] resource on quote
     Then the status code is 200
     And Verify across response includes following in the response
-      | id | [rejectQuoteId] |
+      | id | [quoteId] |
 
   @css
-  Scenario: RejectInsuranceQuote - api call
+  Scenario: AcceptInsuranceQuote - api call
     Given a user perform a api action
     And add request with given header params
       | contentType  | application/json |
       | X-Auth-Token | [token]          |
     And Update api with given input
-      | status | QUOTE_REJECTED |
-    When a user patch application/json in /insurance-quote-requests/[rejectQuoteId] resource on css
+      | status | QUOTE_ACCEPTED |
+    When a user patch application/json in /insurance-quote-requests/[quoteId] resource on css
     Then the status code is 200
-    And Verify statusHistory response csvson includes in the response
-      | status            |
-      | REQUEST_SUBMITTED |
-      | QUOTE_RECEIVED    |
-      | QUOTE_REJECTED    |
+    And Verify api response csvson includes in the response
+      | statusHistory/status                                |
+      | REQUEST_SUBMITTED\|QUOTE_RECEIVED\|QUOTE_ACCEPTED\| |
     And Verify across response includes following in the response
-      | id | [rejectQuoteId] |
+      | id | [quoteId] |
