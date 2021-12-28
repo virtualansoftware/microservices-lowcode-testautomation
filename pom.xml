@@ -70,6 +70,7 @@
         <module>example</module>
         <module>generate-feature-file</module>
         <module>execute-feature-file</module>
+        <module>workflow-virtualan-collection-rest</module>
     </modules>
 
     <repositories>
