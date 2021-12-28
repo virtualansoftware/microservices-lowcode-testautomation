@@ -1,0 +1,10 @@
+parallelExecution: 4
+timeout:  1
+apiExecutor:
+  - reportTitle: "REST POST Example"
+    env: test
+    outputDir: target/rest-post
+    inputExcel: rest/rest-post.xlsx
+    outputJsonDir: target/idaithalam
+    cucumblanProperties:
+      service.api.eendpoint: https://live.virtualandemo.com/api
