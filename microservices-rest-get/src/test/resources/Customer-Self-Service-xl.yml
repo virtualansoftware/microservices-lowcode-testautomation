@@ -1,0 +1,18 @@
+parallelExecution: 4
+timeout:  1
+apiExecutor:
+  - reportTitle: "Lakeside Mutual - Customer Self-Service - API alone"
+    env: test
+    outputDir: LakesideMutual/Customer-Self-Service/EXCEL
+    inputExcel: css/customer-self-service.xlsx
+    outputJsonDir: target/idaithalam
+    cucumblanProperties:
+      service.api.css: http://microservices.virtualandemo.com:8080
+      service.api.quote: http://microservices.virtualandemo.com:8090
+      service.api.customer: http://microservices.virtualandemo.com:8100
+      service.api.cust: http://microservices.virtualandemo.com:8100
+      service.api.api: https://live.virtualandemo.com
+      service.api.graphql: http://microservices.virtualandemo.com:8091
+    cucumblanEnvProperties:
+      email: idaithalam@admin.com
+      password: 1password
