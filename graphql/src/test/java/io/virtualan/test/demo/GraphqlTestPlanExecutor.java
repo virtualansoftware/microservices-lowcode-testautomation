@@ -9,14 +9,13 @@ import org.testng.annotations.Test;
 
 
 @Test
-public class LakesideMutualExecuteTestPlanExecutor {
-
+public class GraphqlTestPlanExecutor {
 
   @Test
-  public void workflowExecution_xl_db() {
+  public void graphql() {
     try {
       boolean isSuccess = VirtualanTestPlanExecutor
-              .invoke("Customer-Self-Service-xl-db.yml");
+              .invoke("graphql.yml");
       Assert.assertTrue(isSuccess);
     } catch (InterruptedException e) {
       Assert.assertTrue(false);

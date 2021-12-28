@@ -9,8 +9,7 @@ import org.testng.annotations.Test;
 
 
 @Test
-public class LakesideMutualExecuteTestPlanExecutor {
-
+public class RestWithDBTestPlanExecutor {
 
   @Test
   public void workflowExecution_xl_db() {

@@ -4,9 +4,8 @@ apiExecutor:
   - reportTitle: "Lakeside Mutual - Customer Self-Service - API and Database"
     outputJsonDir: target/idaithalam
     env: test
-    outputDir: LakesideMutual/Customer-Self-Service/DB
+    outputDir: target/Customer-Self-Service/DB
     inputExcel: css/customer-self-service-with-db.xlsx
-    virtualanSpecPath: virtualan-collection
     cucumblanProperties:
       service.api.css: http://microservices.virtualandemo.com:8080
       service.api.quote: http://microservices.virtualandemo.com:8090

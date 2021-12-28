@@ -1,0 +1,10 @@
+parallelExecution: 4
+timeout:  1
+apiExecutor:
+  - reportTitle: "Graphql"
+    env: test
+    outputDir: target/graphql
+    inputExcel: graphql/graphql.xlsx
+    outputJsonDir: target/idaithalam
+    cucumblanProperties:
+      service.api.graphql: http://microservices.virtualandemo.com:8091

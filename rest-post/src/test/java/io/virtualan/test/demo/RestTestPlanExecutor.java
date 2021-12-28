@@ -9,19 +9,17 @@ import org.testng.annotations.Test;
 
 
 @Test
-public class LakesideMutualExecuteTestPlanExecutor {
-
+public class RestTestPlanExecutor {
 
   @Test
-  public void workflowExecution_xl_db() {
+  public void workflowExecution_xl() {
     try {
       boolean isSuccess = VirtualanTestPlanExecutor
-              .invoke("Customer-Self-Service-xl-db.yml");
+              .invoke("rest-post.yml");
       Assert.assertTrue(isSuccess);
     } catch (InterruptedException e) {
       Assert.assertTrue(false);
     }
   }
-
 
 }

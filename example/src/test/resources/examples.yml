@@ -1,0 +1,10 @@
+parallelExecution: 4
+timeout:  1
+apiExecutor:
+  - reportTitle: "Examples"
+    env: test
+    outputDir: target/examples
+    inputExcel: examples/examples.xlsx
+    outputJsonDir: target/idaithalam
+    cucumblanProperties:
+      service.api.api: https://live.virtualandemo.com

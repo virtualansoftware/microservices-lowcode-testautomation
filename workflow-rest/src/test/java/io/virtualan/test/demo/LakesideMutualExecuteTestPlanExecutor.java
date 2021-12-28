@@ -26,7 +26,7 @@ public class LakesideMutualExecuteTestPlanExecutor {
   public void workflowExecution_xl() {
     try {
       boolean isSuccess = VirtualanTestPlanExecutor
-              .invoke("Customer-Self-Service-xl.yml");
+              .invoke("rest-post.yml");
       Assert.assertTrue(isSuccess);
     } catch (InterruptedException e) {
       e.printStackTrace();
@@ -40,7 +40,7 @@ public class LakesideMutualExecuteTestPlanExecutor {
   public void workflowExecution_1() {
     try {
       boolean isSuccess = VirtualanTestPlanExecutor
-          .invoke("lakeside-Mutual-Customer-Self-Service.yml");
+          .invoke("examples.yml");
       Assert.assertTrue(isSuccess);
     } catch (InterruptedException e) {
       e.printStackTrace();
