@@ -24,18 +24,6 @@ public class WFExecuteTestPlanExecutor {
     }
   }
 
-  @Test
-  public void workflowExecution_1() {
-    try {
-      boolean isSuccess = VirtualanTestPlanExecutor
-          .invoke("lakeside-Mutual-Customer-Self-Service.yml");
-      Assert.assertTrue(isSuccess);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-      Assert.assertTrue(false);
-    }
-  }
-
 
   @Test
   public void workflowExecution_xl_db() {
