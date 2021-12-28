@@ -67,7 +67,7 @@
         <module>rest-with-db</module>
         <module>workflow-rest</module>
         <module>graphql</module>
-        <module>example</module>
+        <module>examples</module>
         <module>generate-feature-file</module>
         <module>execute-feature-file</module>
         <module>workflow-virtualan-collection-rest</module>
