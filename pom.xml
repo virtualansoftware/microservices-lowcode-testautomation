@@ -63,14 +63,14 @@
     <modules>
         <module>rest-get</module>
         <module>rest-post</module>
-        <module>db</module>
-        <module>rest-with-db</module>
-        <module>workflow-rest</module>
         <module>graphql</module>
         <module>examples</module>
         <module>generate-feature-file</module>
         <module>execute-feature-file</module>
         <module>workflow-virtualan-collection-rest</module>
+        <module>workflow-rest</module>
+        <module>db</module>
+        <module>rest-with-db</module>
     </modules>
 
     <repositories>
