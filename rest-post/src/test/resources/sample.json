@@ -1,0 +1,30 @@
+[{
+    "output": "65",
+    "input": "{\n  \"birthday\" : \"1918-10-24\",\n  \"postalCode\" : \"60563\"\n}",
+    "requestType": "REST",
+    "method": "POST",
+    "scenario": "RiskFactor-DirtectResponse",
+    "resource": "endpoint",
+    "availableParams": [
+        {
+            "parameterType": "HEADER_PARAM",
+            "value": "application/json",
+            "key": "contentType"
+        },
+        {
+            "parameterType": "STORAGE_PARAM",
+            "value": ".",
+            "key": "riskFactor"
+        },
+        {
+            "parameterType": "EVAL_PARAM",
+            "value": "c~[riskFactor]=65",
+            "key": "success"
+        }
+    ],
+    "contentType": "application/json",
+    "scenarioId": "RiskFactor-DirtectResponse",
+    "url": "/riskfactor/compute",
+    "tags": "@examples",
+    "httpStatusCode": "200"
+}]

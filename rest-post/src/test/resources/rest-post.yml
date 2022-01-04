@@ -7,4 +7,5 @@ apiExecutor:
     inputExcel: rest/rest-post.xlsx
     outputJsonDir: target/idaithalam
     cucumblanProperties:
-      service.api.eendpoint: https://live.virtualandemo.com/api
+      service.api.endpoint: https://live.virtualandemo.com/api
+      service.api.idai: http://microservices.virtualandemo.com:8900
