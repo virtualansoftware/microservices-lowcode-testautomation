@@ -10,7 +10,6 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <idaithalam.version>1.4.6</idaithalam.version>
-        <mysql.version>8.0.13</mysql.version>
         <testng.ver>7.4.0</testng.ver>
         <aspectj.version>1.8.10</aspectj.version>
     </properties>
@@ -25,11 +24,11 @@
             <artifactId>testng</artifactId>
             <version>${testng.ver}</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>io.qameta.allure</groupId>-->
-<!--            <artifactId>allure-cucumber7-jvm</artifactId>-->
-<!--            <version>2.17.2</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-cucumber7-jvm</artifactId>
+            <version>2.17.2</version>
+        </dependency>
 
     </dependencies>
     <build>
@@ -64,4 +63,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
