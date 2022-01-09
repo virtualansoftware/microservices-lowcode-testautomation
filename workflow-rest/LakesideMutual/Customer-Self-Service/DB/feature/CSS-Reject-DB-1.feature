@@ -1,5 +1,4 @@
 Feature: CSS-Reject-DB - Workflow
-  Feature: CSS-Reject-DB - Workflow
 
   Scenario: Load initial set of data
     Given Provided all the feature level parameters from file

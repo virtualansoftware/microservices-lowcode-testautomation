@@ -1,5 +1,4 @@
 Feature: CSS-Accept-DB - Workflow
-  Feature: CSS-Accept-DB - Workflow
 
   Scenario: Load initial set of data
     Given Provided all the feature level parameters from file

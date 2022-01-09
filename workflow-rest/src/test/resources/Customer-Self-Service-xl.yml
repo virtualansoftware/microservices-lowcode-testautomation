@@ -10,5 +10,5 @@ apiExecutor:
       service.api.css: http://microservices.virtualandemo.com:8080
       service.api.quote: http://microservices.virtualandemo.com:8090
     cucumblanEnvProperties:
-      email: idaithalam@admin.com
+      email: admin@example.com
       password: 1password

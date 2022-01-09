@@ -1,5 +1,4 @@
 Feature: Customer Self Service-Accept - Workflow
-  Feature: Customer Self Service-Accept - Workflow
 
   Scenario: Load initial set of data
     Given Provided all the feature level parameters from file

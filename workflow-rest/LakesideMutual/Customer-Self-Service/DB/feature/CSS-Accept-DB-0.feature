@@ -1,6 +1,8 @@
 Feature: CSS-Accept-DB - Workflow
+
   Scenario: Load initial set of data
     Given Provided all the feature level parameters from file
+
   @css
   Scenario: Customer Self-Service Auth - api call
     Given a user perform a api action
