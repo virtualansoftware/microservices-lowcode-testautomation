@@ -1,0 +1,10 @@
+parallelExecution: 4
+timeout:  1
+apiExecutor:
+  - reportTitle: "REST GET Example"
+    env: test
+    outputDir: target/Org
+    inputExcel: rest/Org.xlsx
+    outputJsonDir: target/idaithalam
+    cucumblanProperties:
+      service.api.ep: https://live.virtualandemo.com/api

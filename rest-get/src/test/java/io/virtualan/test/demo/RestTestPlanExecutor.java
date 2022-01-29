@@ -19,4 +19,15 @@ public class RestTestPlanExecutor {
     }
   }
 
+  @Test
+  public void workflowExecution_admin() {
+    try {
+      boolean isSuccess = VirtualanTestPlanExecutor
+              .invoke("Org.yml");
+      Assert.assertTrue(isSuccess);
+    } catch (Exception e) {
+      Assert.assertTrue(false);
+    }
+  }
+
 }
