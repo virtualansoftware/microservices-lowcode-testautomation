@@ -17,10 +17,9 @@ public class ExecuteTestPlanExecutor {
   public void workflowExecution_xl() {
     try {
       boolean isSuccess = VirtualanTestPlanExecutor
-              .invoke("Customer-Self-Service-xl.yml");
+              .invoke("Customer-Self-Service-xl-db.yml");
       Assert.assertTrue(isSuccess);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
+    } catch (Exception e) {
       Assert.assertTrue(false);
     }
   }

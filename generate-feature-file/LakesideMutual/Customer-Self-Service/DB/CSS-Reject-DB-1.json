@@ -21,7 +21,6 @@
         "contentType": "application/json",
         "scenarioId": "CustomerSelfServiceAuth",
         "url": "/auth",
-        "tags": "@elan  @IDAITHALAM-8",
         "httpStatusCode": "200"
     },
     {
@@ -55,11 +54,6 @@
                 "parameterType": "EVAL_PARAM",
                 "value": "TEXT(TODAY(),\"yyyy-mm-dd\")",
                 "key": "startDate"
-            },
-            {
-                "parameterType": "ADDIFY_PARAM",
-                "value": "500",
-                "key": "insurancePremiumAmount"
             }
         ],
         "contentType": "application/json",
@@ -113,11 +107,6 @@
                 "parameterType": "STORAGE_PARAM",
                 "value": "city",
                 "key": "city"
-            },
-            {
-                "parameterType": "EVAL_PARAM",
-                "value": "c~LEN(\"[firstname]\")=3",
-                "key": "success"
             }
         ],
         "contentType": "application/json",
@@ -126,10 +115,10 @@
         "httpStatusCode": "200"
     },
     {
-        "input": "{\n    \"statusHistory\": [],\n    \"customerInfo\": {\n        \"customerId\": \"[customerId]\",\n        \"firstname\": \"[firstname]\",\n        \"lastname\": \"[lastname]\",\n        \"contactAddress\": {\n            \"streetAddress\": \"[streetAddress]\",\n            \"postalCode\": \"[postalCode]\",\n            \"city\": \"[city]\"\n        },\n        \"billingAddress\": {\n            \"streetAddress\": \"[streetAddress]\",\n            \"postalCode\": \"[postalCode]\",\n            \"city\": \"[city]\"\n        }\n    },\n    \"insuranceOptions\": {\n        \"startDate\": \"[startDate]\",\n        \"insuranceType\": \"[insuranceType]\",\n        \"deductible\": {\n            \"amount\": 500,\n            \"currency\": \"CHF\"\n        }\n    }\n}",
+        "input": "{\n    \"statusHistory\": [],\n    \"customerInfo\": {\n        \"customerId\": \"[customerId]\",\n        \"firstname\": \"[firstname]\",\n        \"lastname\": \"[lastname]\",\n        \"contactAddress\": {\n            \"streetAddress\": \"[streetAddress]\",\n            \"postalCode\": \"[postalCode]\",\n            \"city\": \"[city]\"\n        },\n        \"billingAddress\": {\n            \"streetAddress\": \"[streetAddress]\",\n            \"postalCode\": \"[postalCode]\",\n            \"city\": \"[city]\"\n        }\n    },\n    \"insuranceOptions\": {\n        \"startDate\": \"2021-09-20\",\n        \"insuranceType\": \"Life Insurance\",\n        \"deductible\": {\n            \"amount\": 500,\n            \"currency\": \"CHF\"\n        }\n    }\n}",
         "requestType": "REST",
         "method": "POST",
-        "scenario": "CreateInsuranceQuote",
+        "scenario": "CreateInsuranceQuoteForReject",
         "resource": "css",
         "availableParams": [
             {
@@ -145,25 +134,20 @@
             {
                 "parameterType": "STORAGE_PARAM",
                 "value": "id",
-                "key": "quoteId"
-            },
-            {
-                "parameterType": "ADDIFY_PARAM",
-                "value": "Life Insurance",
-                "key": "insuranceType"
+                "key": "rejectQuoteId"
             }
         ],
         "contentType": "application/json",
-        "scenarioId": "CreateInsuranceQuote",
+        "scenarioId": "CreateInsuranceQuoteForReject",
         "url": "/insurance-quote-requests",
         "httpStatusCode": "200"
     },
     {
-        "outputFields": {"id": "[quoteId]"},
-        "input": "{\n    \"status\": \"QUOTE_RECEIVED\",\n    \"expirationDate\": \"[expiryDate].000Z\",\n    \"insurancePremium\": {\n        \"amount\": \"[insurancePremiumAmount]\",\n        \"currency\": \"CHF\"\n    },\n    \"policyLimit\": {\n        \"amount\": 50000,\n        \"currency\": \"CHF\"\n    }\n}",
+        "outputFields": {"id": "[rejectQuoteId]"},
+        "input": "{\n    \"status\": \"QUOTE_RECEIVED\",\n    \"expirationDate\": \"[expiryDate].000Z\",\n    \"insurancePremium\": {\n        \"amount\": 500,\n        \"currency\": \"CHF\"\n    },\n    \"policyLimit\": {\n        \"amount\": 50000,\n        \"currency\": \"CHF\"\n    }\n}",
         "requestType": "REST",
         "method": "PATCH",
-        "scenario": "ReceiveInsuranceQuote",
+        "scenario": "ReceiveInsuranceQuoteToReject",
         "resource": "quote",
         "availableParams": [
             {
@@ -178,20 +162,23 @@
             }
         ],
         "contentType": "application/json",
-        "scenarioId": "ReceiveInsuranceQuote",
-        "url": "/insurance-quote-requests/[quoteId]",
+        "scenarioId": "ReceiveInsuranceQuoteToReject",
+        "url": "/insurance-quote-requests/[rejectQuoteId]",
         "httpStatusCode": "200"
     },
     {
-        "outputFields": {"id": "[quoteId]"},
-        "input": "{\n    \"status\": \"QUOTE_ACCEPTED\" \n}",
+        "outputFields": {"id": "[rejectQuoteId]"},
+        "input": "{\n    \"status\": \"QUOTE_REJECTED\" \n}",
         "requestType": "REST",
         "method": "PATCH",
-        "scenario": "AcceptInsuranceQuote",
+        "scenario": "RejectInsuranceQuote",
         "resource": "css",
         "csvson": [
-            "statusHistory/status",
-            "REQUEST_SUBMITTED\\|QUOTE_RECEIVED\\|QUOTE_ACCEPTED\\|"
+            "jsonpath=statusHistory",
+            "status",
+            "REQUEST_SUBMITTED",
+            "QUOTE_RECEIVED",
+            "QUOTE_REJECTED"
         ],
         "availableParams": [
             {
@@ -206,8 +193,22 @@
             }
         ],
         "contentType": "application/json",
-        "scenarioId": "AcceptInsuranceQuote",
-        "url": "/insurance-quote-requests/[quoteId]",
+        "scenarioId": "RejectInsuranceQuote",
+        "url": "/insurance-quote-requests/[rejectQuoteId]",
         "httpStatusCode": "200"
+    },
+    {
+        "input": "select iqr.id, iq.insurance_premium_amount, iq.insurance_premium_currency, iq.policy_limit_amount from insurancequotes iq INNER JOIN insurancequoterequests iqr on iq.id = iqr.insurance_quote_id and iqr.id  =  [rejectQuoteId]",
+        "requestType": "DB",
+        "method": "SELECT",
+        "scenario": "InsuranceQuoteByDBReject",
+        "resource": "css",
+        "availableParams": [{
+            "parameterType": "STORAGE_PARAM",
+            "value": "[0].policy_limit_amount",
+            "key": "policy_limit_amount"
+        }],
+        "stepInfo": ["Read information"],
+        "scenarioId": "InsuranceQuoteByDBReject"
     }
 ]

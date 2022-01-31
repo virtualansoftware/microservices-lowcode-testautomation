@@ -8,32 +8,19 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 
-@Test
+@org.testng.annotations.Test
 public class ExecuteTestPlanExecutor {
 
 
 
-  @Test
+  @org.testng.annotations.Test
   public void workflowExecution_xl() {
     try {
-      boolean isSuccess = VirtualanTestPlanExecutor
-              .invoke("Customer-Self-Service-xl.yml");
-      Assert.assertTrue(isSuccess);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-      Assert.assertTrue(false);
-    }
-  }
-
-  @Test
-  public void workflowExecution_xl_db() {
-    try {
-      boolean isSuccess = VirtualanTestPlanExecutor
+      boolean isSuccess = io.virtualan.idaithalam.core.api.VirtualanTestPlanExecutor
               .invoke("Customer-Self-Service-xl-db.yml");
-      Assert.assertTrue(isSuccess);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-      Assert.assertTrue(false);
+      org.testng.Assert.assertTrue(isSuccess);
+    } catch (Exception e) {
+      org.testng.Assert.assertTrue(false);
     }
   }
 
