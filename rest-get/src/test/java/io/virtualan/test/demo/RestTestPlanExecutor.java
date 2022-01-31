@@ -14,17 +14,6 @@ public class RestTestPlanExecutor {
       boolean isSuccess = VirtualanTestPlanExecutor
               .invoke("rest-get.yml");
       Assert.assertTrue(isSuccess);
-    } catch (InterruptedException e) {
-      Assert.assertTrue(false);
-    }
-  }
-
-  @Test
-  public void workflowExecution_admin() {
-    try {
-      boolean isSuccess = VirtualanTestPlanExecutor
-              .invoke("Org.yml");
-      Assert.assertTrue(isSuccess);
     } catch (Exception e) {
       Assert.assertTrue(false);
     }

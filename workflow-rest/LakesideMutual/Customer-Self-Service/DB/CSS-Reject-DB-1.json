@@ -208,6 +208,7 @@
             "value": "[0].policy_limit_amount",
             "key": "policy_limit_amount"
         }],
+        "stepInfo": ["Read information"],
         "scenarioId": "InsuranceQuoteByDBReject"
     }
 ]

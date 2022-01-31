@@ -19,7 +19,7 @@ public class WFExecuteTestPlanExecutor {
       boolean isSuccess = VirtualanTestPlanExecutor
               .invoke("Customer-Self-Service-xl.yml");
       Assert.assertTrue(isSuccess);
-    } catch (InterruptedException e) {
+    } catch (Exception e) {
       Assert.assertTrue(false);
     }
   }
@@ -31,7 +31,7 @@ public class WFExecuteTestPlanExecutor {
       boolean isSuccess = VirtualanTestPlanExecutor
               .invoke("Customer-Self-Service-xl-db.yml");
       Assert.assertTrue(isSuccess);
-    } catch (InterruptedException e) {
+    } catch (Exception e) {
       e.printStackTrace();
       Assert.assertTrue(false);
     }

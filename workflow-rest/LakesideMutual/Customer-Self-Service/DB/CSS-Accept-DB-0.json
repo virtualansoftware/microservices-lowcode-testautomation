@@ -18,6 +18,14 @@
                 "key": "token"
             }
         ],
+        "stepInfo": [
+            "as a insurance user",
+            "login",
+            "content type",
+            "login information",
+            "logging in using",
+            "user email information"
+        ],
         "contentType": "application/json",
         "scenarioId": "CustomerSelfServiceAuth",
         "url": "/auth",
@@ -210,7 +218,7 @@
             "value": "[0].policy_limit_amount",
             "key": "policy_limit_amount"
         }],
-        "stepInfo": "verify record",
+        "stepInfo": ["verify record"],
         "scenarioId": "InsuranceQuoteByDB"
     }
 ]
