@@ -71,6 +71,7 @@
         <module>workflow-rest</module>
         <module>db</module>
         <module>rest-with-db</module>
+        <module>rest-db-kafka</module>
     </modules>
 
     <repositories>
