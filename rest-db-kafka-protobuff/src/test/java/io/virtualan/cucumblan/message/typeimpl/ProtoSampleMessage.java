@@ -14,7 +14,7 @@ import org.json.JSONObject;
 public class ProtoSampleMessage implements MessageType<String, io.virtualan.proto.cucumblan.Callback> {
     private String type = "PROTOBUFF";
     private long id;
-    private io.virtualan.proto.cucumblan.Callback body;
+    private io.virtualan.proto.cucumblan.Callback callback;
     private String name;
     private String key;
 
@@ -22,9 +22,10 @@ public class ProtoSampleMessage implements MessageType<String, io.virtualan.prot
     public ProtoSampleMessage() {
     }
 
-    public ProtoSampleMessage(long id, String name) {
+    public ProtoSampleMessage(long id, String name, io.virtualan.proto.cucumblan.Callback callback) {
         this.name = name;
         this.id = id;
+        this.callback = callback;
     }
 
     public String getType() {
@@ -40,11 +41,11 @@ public class ProtoSampleMessage implements MessageType<String, io.virtualan.prot
     }
 
     public String getKey() {
-        return this.key;
+        return String.valueOf(this.id);
     }
 
     public io.virtualan.proto.cucumblan.Callback getMessage() {
-        return this.body;
+        return this.callback;
     }
 
     public Object getMessageAsJson() {
@@ -55,30 +56,16 @@ public class ProtoSampleMessage implements MessageType<String, io.virtualan.prot
     }
 
     public MessageType buildProducerMessage(Object messages) throws MessageNotDefinedException {
-        String message;
-        JSONObject body;
-        if (messages instanceof List) {
-            message = (String)((List)messages).stream().collect(Collectors.joining());
-            body = new JSONObject(message);
-            return new JSONMessage(body.getInt("id"), message);
-        } else {
-            message = null;
-
-            try {
-                message = Mapson.buildMAPsonAsJson((Map)messages);
-                body = new JSONObject(message);
-                return new JSONMessage(body.getInt("id"), message);
-            } catch (BadInputDataException var4) {
-                throw new MessageNotDefinedException(var4.getMessage());
-            }
-        }
+       //TODO
+        return null;
     }
 
     public MessageType buildConsumerMessage(ConsumerRecord<String, io.virtualan.proto.cucumblan.Callback> record, String key, io.virtualan.proto.cucumblan.Callback callback) throws MessageNotDefinedException {
-         return new ProtoSampleMessage(callback.getTwoEvent().getNumber(), callback.getTwoEvent().getAddress());
+        this.callback = callback;
+        return new ProtoSampleMessage(callback.getTwoEvent().getNumber(), callback.getTwoEvent().getAddress(), callback);
     }
 
     public String toString() {
-        return "JSONMessage{type='" + this.type + '\'' + ", id=" + this.id + ", body=" + this.body + '}';
+        return "JSONMessage{type='" + this.type + '\'' + ", id=" + this.id + ", body=" + this.callback + '}';
     }
 }
