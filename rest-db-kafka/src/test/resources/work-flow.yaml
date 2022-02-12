@@ -3,6 +3,7 @@ timeout:  30000
 apiExecutor:
   - reportTitle: "Kafka DB API Testing live"
     env: dev
+    outputJsonDir: target/idaithalam
     outputDir: target/dev/1
     inputExcel: virtualan_collection_kafka_db_testcase_0.xlsx
     cucumblanProperties:
@@ -10,4 +11,4 @@ apiExecutor:
       pet.cucumblan.jdbc.driver-class-name: org.hsqldb.jdbc.JDBCDriver
       pet.cucumblan.jdbc.username: SA
       pet.cucumblan.jdbc.password: ""
-      pet.cucumblan.jdbc.url: jdbc:hsqldb:file:c:\\db\\cucumblan;hsqldb.lock_file=false
+      pet.cucumblan.jdbc.url: jdbc:hsqldb:mem:dataSource
