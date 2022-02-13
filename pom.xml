@@ -72,6 +72,7 @@
         <module>db</module>
         <module>rest-with-db</module>
         <module>rest-db-kafka</module>
+        <module>rest-db-kafka-protobuf</module>
     </modules>
 
     <repositories>
