@@ -4,7 +4,7 @@ apiExecutor:
   - reportTitle: "Kafka DB API Testing live"
     env: dev
     outputDir: target/dev/1
-    inputExcel: virtualan_collection_kafka_db_testcase_0.xlsx
+    inputExcel: virtualan_collection_kafka_JSON_PROTO_BUF.xlsx
     cucumblanProperties:
       service.api.pet: https://live.virtualandemo.com
       service.api.demo: http://localhost:8800
