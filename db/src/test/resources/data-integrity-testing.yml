@@ -1,13 +1,17 @@
 parallelExecution: 4
 timeout:  1
 apiExecutor:
-  - reportTitle: "Lakeside Mutual - Customer Self-Service - and Database"
+  - reportTitle: "Low code/No Data Integrity Testing"
     outputJsonDir: target/idaithalam
     env: test
-    outputDir: target/Customer-Self-Service/DB
-    inputExcel: css/customer-self-service-with-db.xlsx
+    outputDir: target/DB
+    inputExcel: db/data-integrity-testing.xlsx
     cucumblanProperties:
       css.cucumblan.jdbc.driver-class-name: com.mysql.cj.jdbc.Driver
       css.cucumblan.jdbc.username: demo_user
       css.cucumblan.jdbc.password: demo_password
       css.cucumblan.jdbc.url: jdbc:mysql://microservices.virtualandemo.com:3306/customerselfservice?useSSL=false
+      employee.cucumblan.jdbc.driver-class-name: org.h2.Driver
+      employee.cucumblan.jdbc.username: sa
+      employee.cucumblan.jdbc.password: sa
+      employee.cucumblan.jdbc.url: jdbc:h2:mem:myDb;DB_CLOSE_DELAY=-1

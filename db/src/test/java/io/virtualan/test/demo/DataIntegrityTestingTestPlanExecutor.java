@@ -9,16 +9,16 @@ import org.testng.annotations.Test;
 
 
 @Test
-public class LakesideMutualExecuteTestPlanExecutor {
+public class DataIntegrityTestingTestPlanExecutor {
 
 
   @Test
   public void workflowExecution_xl_db() {
     try {
       boolean isSuccess = VirtualanTestPlanExecutor
-              .invoke("Customer-Self-Service-xl-db.yml");
+              .invoke("data-integrity-testing.yml");
       Assert.assertTrue(isSuccess);
-    } catch (InterruptedException e) {
+    } catch (Exception e) {
       Assert.assertTrue(false);
     }
   }
