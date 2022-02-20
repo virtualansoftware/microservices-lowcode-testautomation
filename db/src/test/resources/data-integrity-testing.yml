@@ -11,7 +11,3 @@ apiExecutor:
       employee.cucumblan.jdbc.username: sa
       employee.cucumblan.jdbc.password: sa
       employee.cucumblan.jdbc.url: jdbc:h2:mem:myDb;DB_CLOSE_DELAY=-1
-      css.cucumblan.jdbc.driver-class-name: com.mysql.cj.jdbc.Driver
-      css.cucumblan.jdbc.username: demo_user
-      css.cucumblan.jdbc.password: demo_password
-      css.cucumblan.jdbc.url: jdbc:mysql://microservices.virtualandemo.com:3306/customerselfservice?useSSL=false

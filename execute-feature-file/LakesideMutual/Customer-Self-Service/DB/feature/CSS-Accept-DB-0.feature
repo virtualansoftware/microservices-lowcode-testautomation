@@ -5,17 +5,17 @@ Feature: CSS-Accept-DB - Workflow
 
   @css
   Scenario: Customer Self-Service Auth - api call
-    Given as a insurance user perform login api action
-    And add content type with given header params
+    Given a user perform a api action
+    And add request with given header params
       | contentType | application/json |
-    And create login information with given input
+    And create api with given input
       | password | [password] |
       | email    | [email]    |
-    When logging in using post application/json in /auth resource on css
+    When a user post application/json in /auth resource on css
     Then the status code is 200
-    And verify user email information includes following in the response
+    And verify across response includes following in the response
       | email | [email] |
-    And store token as key and api's token as value
+    And store the token value of the key as token
 
   @css
   Scenario: GetCustomerByLogin - api call
@@ -27,9 +27,9 @@ Feature: CSS-Accept-DB - Workflow
     Then the status code is 200
     And verify across response includes following in the response
       | email | [email] |
-    And store customerId as key and api's customerId as value
-    And evaluate key as expiryDate and SUBSTITUTE(TEXT(NOW()+365, "yyyy-mm-dd HH:mm:ss"), " ", "T") as function value
-    And evaluate key as startDate and TEXT(TODAY(),"yyyy-mm-dd") as function value
+    And store the customerId value of the key as customerId
+    And evaluate the SUBSTITUTE(TEXT(NOW()+365, "yyyy-mm-dd HH:mm:ss"), " ", "T") function value of the key as expiryDate
+    And evaluate the TEXT(TODAY(),"yyyy-mm-dd") function value of the key as startDate
 
   @css
   Scenario: GetCustomerInfoByCustomerId - api call
@@ -41,12 +41,12 @@ Feature: CSS-Accept-DB - Workflow
     Then the status code is 200
     And verify across response includes following in the response
       | firstname | Max |
-    And store customerId as key and api's customerId as value
-    And store firstname as key and api's firstname as value
-    And store lastname as key and api's lastname as value
-    And store streetAddress as key and api's streetAddress as value
-    And store postalCode as key and api's postalCode as value
-    And store city as key and api's city as value
+    And store the customerId value of the key as customerId
+    And store the firstname value of the key as firstname
+    And store the lastname value of the key as lastname
+    And store the streetAddress value of the key as streetAddress
+    And store the postalCode value of the key as postalCode
+    And store the city value of the key as city
 
   @css
   Scenario: CreateInsuranceQuote - api call
@@ -70,7 +70,7 @@ Feature: CSS-Accept-DB - Workflow
       | insuranceOptions.startDate                | 2021-06-20      |
     When a user post application/json in /insurance-quote-requests resource on css
     Then the status code is 200
-    And store quoteId as key and api's id as value
+    And store the id value of the key as quoteId
 
   @quote
   Scenario: ReceiveInsuranceQuote - api call
@@ -108,11 +108,11 @@ Feature: CSS-Accept-DB - Workflow
 
   @css
   Scenario: InsuranceQuoteByDB - database action
-    Given as a user perform sql query action
-    When read details on the given query on css
+    Given as a user perform sql verify record action
+    When select details with the given sql verify record on css
       | select iqr.id, iq.insurance_premium_amount, iq.insurance_premium_currency, iq.policy_limit_amount from insurancequotes iq INNER JOIN insurancequoterequests iqr on iq.id = iqr.insurance_quote_id and iqr.id  =  [quoteId] |
-    Then validate information on the given details on css
+    Then verify details with the given sql verify record on css
       | select iqr.id, iq.insurance_premium_amount, iq.insurance_premium_currency, iq.policy_limit_amount from insurancequotes iq INNER JOIN insurancequoterequests iqr on iq.id = iqr.insurance_quote_id and iqr.id  =  [quoteId] |
       | id,insurance_premium_amount, insurance_premium_currency, policy_limit_amount                                                                                                                                               |
       | i~[quoteId],d~500.00,CHF,d~50000.00                                                                                                                                                                                        |
-    And store policy_limit_amount as key and query's [0].policy_limit_amount as value
+    And store-sql's [0].policy_limit_amount value of the key as policy_limit_amount
