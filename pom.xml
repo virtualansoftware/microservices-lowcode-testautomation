@@ -61,6 +61,7 @@
         </plugins>
     </build>
     <modules>
+        <module>demo-all</module>
         <module>rest-get</module>
         <module>rest-post</module>
         <module>graphql</module>

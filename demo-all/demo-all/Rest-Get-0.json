@@ -1,0 +1,81 @@
+[
+    {
+        "requestType": "REST",
+        "method": "GET",
+        "scenario": "Read user infos - Example",
+        "resource": "ep",
+        "csvson": [
+            "dateOfBirth,firstName,lastName,lastTimeOnline,spokenLanguages/additionalProp1:additionalProp2:additionalProp3,username",
+            "1955-10-28,Bill,Gates,2020-08-30T20:28:36.267Z,Tamil:English:Spanish,bgates"
+        ],
+        "availableParams": [{
+            "parameterType": "HEADER_PARAM",
+            "value": "application/json",
+            "key": "contentType"
+        }],
+        "contentType": "application/json",
+        "scenarioId": "ReadPerson-Simple",
+        "url": "/persons/bgates",
+        "tags": "@examples",
+        "httpStatusCode": "200"
+    },
+    {
+        "outputFields": {"status": "available"},
+        "requestType": "REST",
+        "method": "GET",
+        "scenario": "Read pet by customer by query params",
+        "resource": "ep",
+        "csvson": [
+            "id,name, category/id:name,status",
+            "i~201,,i~200:Bulldog,available"
+        ],
+        "availableParams": [
+            {
+                "parameterType": "HEADER_PARAM",
+                "value": "application/json",
+                "key": "contentType"
+            },
+            {
+                "parameterType": "QUERY_PARAM",
+                "value": "validateEmpty",
+                "key": "tags"
+            }
+        ],
+        "contentType": "application/json",
+        "scenarioId": "ReadPetByQueryparams-Simple",
+        "url": "/pets/findByTags",
+        "tags": "@empty_test",
+        "httpStatusCode": "200"
+    },
+    {
+        "outputFields": {
+            "name==null": "true",
+            "status": "available"
+        },
+        "requestType": "REST",
+        "method": "GET",
+        "scenario": "Read pet by customer by query params",
+        "resource": "ep",
+        "csvson": [
+            "id,category/id:name,status",
+            "i~201,i~200:Bulldog,available"
+        ],
+        "availableParams": [
+            {
+                "parameterType": "HEADER_PARAM",
+                "value": "application/json",
+                "key": "contentType"
+            },
+            {
+                "parameterType": "QUERY_PARAM",
+                "value": "validateNull",
+                "key": "tags"
+            }
+        ],
+        "contentType": "application/json",
+        "scenarioId": "ReadPetByQueryparams-Simple",
+        "url": "/pets/findByTags",
+        "tags": "@test_2",
+        "httpStatusCode": "200"
+    }
+]

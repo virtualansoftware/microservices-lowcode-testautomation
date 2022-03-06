@@ -115,7 +115,7 @@
         "httpStatusCode": "200"
     },
     {
-        "input": "{\n    \"statusHistory\": [],\n    \"customerInfo\": {\n        \"customerId\": \"[customerId]\",\n        \"firstname\": \"[firstname]\",\n        \"lastname\": \"[lastname]\",\n        \"contactAddress\": {\n            \"streetAddress\": \"[streetAddress]\",\n            \"postalCode\": \"[postalCode]\",\n            \"city\": \"[city]\"\n        },\n        \"billingAddress\": {\n            \"streetAddress\": \"[streetAddress]\",\n            \"postalCode\": \"[postalCode]\",\n            \"city\": \"[city]\"\n        }\n    },\n    \"insuranceOptions\": {\n        \"startDate\": \"2021-06-20\",\n        \"insuranceType\": \"Life Insurance\",\n        \"deductible\": {\n            \"amount\": 500,\n            \"currency\": \"CHF\"\n        }\n    }\n}",
+        "input": "{\n    \"statusHistory\": [],\n    \"customerInfo\": {\n        \"customerId\": \"[customerId]\",\n        \"firstname\": \"[firstname]\",\n        \"lastname\": \"[lastname]\",\n        \"contactAddress\": {\n            \"streetAddress\": \"[streetAddress]\",\n            \"postalCode\": \"[postalCode]\",\n            \"city\": \"[city]\"\n        },\n        \"billingAddress\": {\n            \"streetAddress\": \"[streetAddress]\",\n            \"postalCode\": \"[postalCode]\",\n            \"city\": \"[city]\"\n        }\n    },\n    \"insuranceOptions\": {\n        \"startDate\": \"[startDate]\",\n        \"insuranceType\": \"Life Insurance\",\n        \"deductible\": {\n            \"amount\": 500,\n            \"currency\": \"CHF\"\n        }\n    }\n}",
         "requestType": "REST",
         "method": "POST",
         "scenario": "CreateInsuranceQuoteForReject",

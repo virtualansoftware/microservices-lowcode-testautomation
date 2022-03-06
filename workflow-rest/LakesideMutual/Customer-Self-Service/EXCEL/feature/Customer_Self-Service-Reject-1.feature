@@ -67,7 +67,7 @@ Feature: Customer Self-Service-Reject - Workflow
       | insuranceOptions.deductible.amount        | i~500           |
       | insuranceOptions.deductible.currency      | CHF             |
       | insuranceOptions.insuranceType            | Life Insurance  |
-      | insuranceOptions.startDate                | 2021-06-20      |
+      | insuranceOptions.startDate                | [startDate]     |
     When a user post application/json in /insurance-quote-requests resource on css
     Then the status code is 200
     And store rejectQuoteId as key and api's id as value

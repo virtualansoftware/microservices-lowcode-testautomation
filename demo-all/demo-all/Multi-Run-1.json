@@ -1,0 +1,39 @@
+[{
+    "input": "{\n  \"category\": {\n    \"id\": 0,\n    \"name\": \"string\"\n  },\n  \"id\": <petId>,\n  \"name\": \"<petName>\",\n  \"photoUrls\": [\n    \"string\"\n  ],\n  \"status\": \"available\",\n  \"tags\": [\n    {\n      \"id\": 0,\n      \"name\": \"string\"\n    }\n  ],\n  \"type\": \"DOGS\"\n}",
+    "requestType": "REST",
+    "method": "POST",
+    "scenario": "post API Testing",
+    "resource": "ep",
+    "rule": [
+        {
+            "petName": "Test1",
+            "petId": "1000"
+        },
+        {
+            "petName": "Test2",
+            "petId": "2000"
+        }
+    ],
+    "availableParams": [
+        {
+            "parameterType": "ADDIFY_PARAM",
+            "value": "<petId>",
+            "key": "petId"
+        },
+        {
+            "parameterType": "ADDIFY_PARAM",
+            "value": "<petName>",
+            "key": "petName"
+        },
+        {
+            "parameterType": "HEADER_PARAM",
+            "value": "application/json",
+            "key": "contentType"
+        }
+    ],
+    "type": "PARAMS",
+    "contentType": "application/json",
+    "scenarioId": "PetPost",
+    "url": "/pets",
+    "httpStatusCode": "201"
+}]
