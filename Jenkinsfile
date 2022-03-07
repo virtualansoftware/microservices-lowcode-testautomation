@@ -5,6 +5,9 @@ pipeline {
         IDAITHALAM_EXECUTION_ENV = 'test-db'
     }
 
+    parameters {
+        string(name: 'IDAITHALAM_EXECUTION_ENV', defaultValue: 'test-api', description: 'env specific build')
+    }
     tools {
         maven "Maven"
     }
