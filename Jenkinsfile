@@ -2,12 +2,9 @@ pipeline {
     agent any
    
     environment {
-        IDAITHALAM_EXECUTION_ENV = '${params.ENV_BUILD}'
+        IDAITHALAM_EXECUTION_ENV = 'test-db'
     }
 
-    parameters {
-        string(name: 'ENV_BUILD', defaultValue: 'test-api', description: 'env specific build')
-    }
     tools {
         maven "Maven"
     }
