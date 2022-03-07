@@ -1,7 +1,10 @@
 [
     {
+        "outputFields": {"email": "[email]"},
+        "input": "{\"email\":\"[email]\",\"password\":\"[password]\"}",
         "requestType": "REST",
         "method": "POST",
+        "scenario": "Customer Self-Service Auth",
         "resource": "cssapi",
         "availableParams": [
             {
@@ -15,21 +18,10 @@
                 "key": "token"
             }
         ],
-        "url": "/auth",
-        "tags": "@token @okta @store-response @variable @password @sceret @workflow",
-        "outputFields": {"email": "[email]"},
-        "input": "{\"email\":\"[email]\",\"password\":\"[password]\"}",
-        "scenario": "Customer Self-Service Auth",
-        "stepInfo": [
-            "as a insurance user",
-            "login",
-            "content type",
-            "login information",
-            "logging in using",
-            "user email information"
-        ],
         "contentType": "application/json",
         "scenarioId": "CustomerSelfServiceAuth",
+        "url": "/auth",
+        "tags": "@token @okta @store-response @variable @password @sceret @workflow",
         "httpStatusCode": "200"
     },
     {
@@ -210,19 +202,5 @@
         "contentType": "application/json",
         "scenarioId": "RejectInsuranceQuote",
         "httpStatusCode": "200"
-    },
-    {
-        "input": "select iqr.id, iq.insurance_premium_amount, iq.insurance_premium_currency, iq.policy_limit_amount from insurancequotes iq INNER JOIN insurancequoterequests iqr on iq.id = iqr.insurance_quote_id and iqr.id  =  [rejectQuoteId]",
-        "requestType": "DB",
-        "method": "SELECT",
-        "scenario": "InsuranceQuoteByDBReject",
-        "resource": "cssdb",
-        "availableParams": [{
-            "parameterType": "STORAGE_PARAM",
-            "value": "[0].policy_limit_amount",
-            "key": "policy_limit_amount"
-        }],
-        "scenarioId": "InsuranceQuoteByDBReject",
-        "tags": "@sql_select @sql_validate @store_sql_response"
     }
 ]

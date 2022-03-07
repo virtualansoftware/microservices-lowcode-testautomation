@@ -1,11 +1,8 @@
 [
     {
-        "outputFields": {"email": "[email]"},
-        "input": "{\"email\":\"[email]\",\"password\":\"[password]\"}",
         "requestType": "REST",
         "method": "POST",
-        "scenario": "Customer Self-Service Auth",
-        "resource": "css",
+        "resource": "cssapi",
         "availableParams": [
             {
                 "parameterType": "HEADER_PARAM",
@@ -18,6 +15,11 @@
                 "key": "token"
             }
         ],
+        "url": "/auth",
+        "tags": "@token @okta @store-response @variable @password @sceret @workflow",
+        "outputFields": {"email": "[email]"},
+        "input": "{\"email\":\"[email]\",\"password\":\"[password]\"}",
+        "scenario": "Customer Self-Service Auth",
         "stepInfo": [
             "as a insurance user",
             "login",
@@ -28,7 +30,6 @@
         ],
         "contentType": "application/json",
         "scenarioId": "CustomerSelfServiceAuth",
-        "url": "/auth",
         "httpStatusCode": "200"
     },
     {
@@ -36,7 +37,7 @@
         "requestType": "REST",
         "method": "GET",
         "scenario": "GetCustomerByLogin",
-        "resource": "css",
+        "resource": "cssapi",
         "availableParams": [
             {
                 "parameterType": "HEADER_PARAM",
@@ -67,6 +68,7 @@
         "contentType": "application/json",
         "scenarioId": "GetCustomerByLogin",
         "url": "/user",
+        "tags": "@dynamic-date @dynamic-value",
         "httpStatusCode": "200"
     },
     {
@@ -74,7 +76,7 @@
         "requestType": "REST",
         "method": "GET",
         "scenario": "GetCustomerInfoByCustomerId",
-        "resource": "css",
+        "resource": "cssapi",
         "availableParams": [
             {
                 "parameterType": "HEADER_PARAM",
@@ -120,6 +122,7 @@
         "contentType": "application/json",
         "scenarioId": "GetCustomerInfoByCustomerId",
         "url": "/customers/[customerId]",
+        "tags": "@store_response @workflow @create_response_variable",
         "httpStatusCode": "200"
     },
     {
@@ -127,7 +130,7 @@
         "requestType": "REST",
         "method": "POST",
         "scenario": "CreateInsuranceQuote",
-        "resource": "css",
+        "resource": "cssapi",
         "availableParams": [
             {
                 "parameterType": "HEADER_PARAM",
@@ -148,6 +151,7 @@
         "contentType": "application/json",
         "scenarioId": "CreateInsuranceQuote",
         "url": "/insurance-quote-requests",
+        "tags": "@pass_dynamic_variables @workflow",
         "httpStatusCode": "200"
     },
     {
@@ -156,7 +160,7 @@
         "requestType": "REST",
         "method": "PATCH",
         "scenario": "ReceiveInsuranceQuote",
-        "resource": "quote",
+        "resource": "quoteapi",
         "availableParams": [
             {
                 "parameterType": "HEADER_PARAM",
@@ -172,19 +176,13 @@
         "contentType": "application/json",
         "scenarioId": "ReceiveInsuranceQuote",
         "url": "/insurance-quote-requests/[quoteId]",
+        "tags": "@workflow @dynamic_date",
         "httpStatusCode": "200"
     },
     {
-        "outputFields": {"id": "[quoteId]"},
-        "input": "{\n    \"status\": \"QUOTE_ACCEPTED\" \n}",
         "requestType": "REST",
         "method": "PATCH",
-        "scenario": "AcceptInsuranceQuote",
-        "resource": "css",
-        "csvson": [
-            "statusHistory/status",
-            "REQUEST_SUBMITTED\\|QUOTE_RECEIVED\\|QUOTE_ACCEPTED\\|"
-        ],
+        "resource": "cssapi",
         "availableParams": [
             {
                 "parameterType": "HEADER_PARAM",
@@ -197,9 +195,17 @@
                 "key": "X-Auth-Token"
             }
         ],
+        "url": "/insurance-quote-requests/[quoteId]",
+        "tags": "@json_Array @json_path",
+        "outputFields": {"id": "[quoteId]"},
+        "input": "{\n    \"status\": \"QUOTE_ACCEPTED\" \n}",
+        "scenario": "AcceptInsuranceQuote",
+        "csvson": [
+            "statusHistory/status",
+            "REQUEST_SUBMITTED\\|QUOTE_RECEIVED\\|QUOTE_ACCEPTED\\|"
+        ],
         "contentType": "application/json",
         "scenarioId": "AcceptInsuranceQuote",
-        "url": "/insurance-quote-requests/[quoteId]",
         "httpStatusCode": "200"
     },
     {
@@ -207,9 +213,8 @@
         "requestType": "DB",
         "method": "SELECT",
         "scenario": "InsuranceQuoteByDB",
-        "resource": "css",
+        "resource": "cssdb",
         "csvson": [
-            "select iqr.id, iq.insurance_premium_amount, iq.insurance_premium_currency, iq.policy_limit_amount from insurancequotes iq INNER JOIN insurancequoterequests iqr on iq.id = iqr.insurance_quote_id and iqr.id  =  [quoteId]",
             "id,insurance_premium_amount, insurance_premium_currency, policy_limit_amount",
             "i~[quoteId],d~500.00,CHF,d~50000.00"
         ],
@@ -219,6 +224,7 @@
             "key": "policy_limit_amount"
         }],
         "stepInfo": ["verify record"],
-        "scenarioId": "InsuranceQuoteByDB"
+        "scenarioId": "InsuranceQuoteByDB",
+        "tags": "@sql_select @sql_validate @store_sql_response"
     }
 ]

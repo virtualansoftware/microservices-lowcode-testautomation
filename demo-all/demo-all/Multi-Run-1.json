@@ -1,8 +1,6 @@
 [{
-    "input": "{\n  \"category\": {\n    \"id\": 0,\n    \"name\": \"string\"\n  },\n  \"id\": <petId>,\n  \"name\": \"<petName>\",\n  \"photoUrls\": [\n    \"string\"\n  ],\n  \"status\": \"available\",\n  \"tags\": [\n    {\n      \"id\": 0,\n      \"name\": \"string\"\n    }\n  ],\n  \"type\": \"DOGS\"\n}",
     "requestType": "REST",
     "method": "POST",
-    "scenario": "post API Testing",
     "resource": "ep",
     "rule": [
         {
@@ -32,8 +30,11 @@
         }
     ],
     "type": "PARAMS",
+    "url": "/pets",
+    "tags": "@multi-run @parametrized  @simple-post",
+    "input": "{\n  \"category\": {\n    \"id\": 0,\n    \"name\": \"string\"\n  },\n  \"id\": <petId>,\n  \"name\": \"<petName>\",\n  \"photoUrls\": [\n    \"string\"\n  ],\n  \"status\": \"available\",\n  \"tags\": [\n    {\n      \"id\": 0,\n      \"name\": \"string\"\n    }\n  ],\n  \"type\": \"DOGS\"\n}",
+    "scenario": "post API Testing",
     "contentType": "application/json",
     "scenarioId": "PetPost",
-    "url": "/pets",
     "httpStatusCode": "201"
 }]

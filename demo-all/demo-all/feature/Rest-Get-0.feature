@@ -3,7 +3,7 @@ Feature: Rest-Get - Workflow
   Scenario: Load initial set of data
     Given provided all the feature level parameters from file
 
-  @examples @ep
+  @simple-get @csvson-example @ep
   Scenario: Read user infos - Example - api call
     Given a user perform a api action
     And add request with given header params
@@ -14,7 +14,7 @@ Feature: Rest-Get - Workflow
       | dateOfBirth,firstName,lastName,lastTimeOnline,spokenLanguages/additionalProp1:additionalProp2:additionalProp3,username |
       | 1955-10-28,Bill,Gates,2020-08-30T20:28:36.267Z,Tamil:English:Spanish,bgates                                            |
 
-  @empty_test @ep
+  @test_empty @queryparam @single-field-validation @ep
   Scenario: Read pet by customer by query params - api call
     Given a user perform a api action
     And add request with given query params
@@ -29,7 +29,7 @@ Feature: Rest-Get - Workflow
     And verify across response includes following in the response
       | status | available |
 
-  @test_2 @ep
+  @test_null @queryparam @ep
   Scenario: Read pet by customer by query params - api call
     Given a user perform a api action
     And add request with given query params

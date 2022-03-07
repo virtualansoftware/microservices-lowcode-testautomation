@@ -126,10 +126,10 @@
         "httpStatusCode": "200"
     },
     {
-        "input": "{\n    \"statusHistory\": [],\n    \"customerInfo\": {\n        \"customerId\": \"[customerId]\",\n        \"firstname\": \"[firstname]\",\n        \"lastname\": \"[lastname]\",\n        \"contactAddress\": {\n            \"streetAddress\": \"[streetAddress]\",\n            \"postalCode\": \"[postalCode]\",\n            \"city\": \"[city]\"\n        },\n        \"billingAddress\": {\n            \"streetAddress\": \"[streetAddress]\",\n            \"postalCode\": \"[postalCode]\",\n            \"city\": \"[city]\"\n        }\n    },\n    \"insuranceOptions\": {\n        \"startDate\": \"2021-09-20\",\n        \"insuranceType\": \"Life Insurance\",\n        \"deductible\": {\n            \"amount\": 500,\n            \"currency\": \"CHF\"\n        }\n    }\n}",
+        "input": "{\n    \"statusHistory\": [],\n    \"customerInfo\": {\n        \"customerId\": \"[customerId]\",\n        \"firstname\": \"[firstname]\",\n        \"lastname\": \"[lastname]\",\n        \"contactAddress\": {\n            \"streetAddress\": \"[streetAddress]\",\n            \"postalCode\": \"[postalCode]\",\n            \"city\": \"[city]\"\n        },\n        \"billingAddress\": {\n            \"streetAddress\": \"[streetAddress]\",\n            \"postalCode\": \"[postalCode]\",\n            \"city\": \"[city]\"\n        }\n    },\n    \"insuranceOptions\": {\n        \"startDate\": \"2021-06-20\",\n        \"insuranceType\": \"Life Insurance\",\n        \"deductible\": {\n            \"amount\": 500,\n            \"currency\": \"CHF\"\n        }\n    }\n}",
         "requestType": "REST",
         "method": "POST",
-        "scenario": "CreateInsuranceQuoteForReject",
+        "scenario": "CreateInsuranceQuote",
         "resource": "cssapi",
         "availableParams": [
             {
@@ -145,21 +145,21 @@
             {
                 "parameterType": "STORAGE_PARAM",
                 "value": "id",
-                "key": "rejectQuoteId"
+                "key": "quoteId"
             }
         ],
         "contentType": "application/json",
-        "scenarioId": "CreateInsuranceQuoteForReject",
+        "scenarioId": "CreateInsuranceQuote",
         "url": "/insurance-quote-requests",
         "tags": "@pass_dynamic_variables @workflow",
         "httpStatusCode": "200"
     },
     {
-        "outputFields": {"id": "[rejectQuoteId]"},
+        "outputFields": {"id": "[quoteId]"},
         "input": "{\n    \"status\": \"QUOTE_RECEIVED\",\n    \"expirationDate\": \"[expiryDate].000Z\",\n    \"insurancePremium\": {\n        \"amount\": 500,\n        \"currency\": \"CHF\"\n    },\n    \"policyLimit\": {\n        \"amount\": 50000,\n        \"currency\": \"CHF\"\n    }\n}",
         "requestType": "REST",
         "method": "PATCH",
-        "scenario": "ReceiveInsuranceQuoteToReject",
+        "scenario": "ReceiveInsuranceQuote",
         "resource": "quoteapi",
         "availableParams": [
             {
@@ -174,8 +174,8 @@
             }
         ],
         "contentType": "application/json",
-        "scenarioId": "ReceiveInsuranceQuoteToReject",
-        "url": "/insurance-quote-requests/[rejectQuoteId]",
+        "scenarioId": "ReceiveInsuranceQuote",
+        "url": "/insurance-quote-requests/[quoteId]",
         "tags": "@workflow @dynamic_date",
         "httpStatusCode": "200"
     },
@@ -195,34 +195,17 @@
                 "key": "X-Auth-Token"
             }
         ],
-        "url": "/insurance-quote-requests/[rejectQuoteId]",
+        "url": "/insurance-quote-requests/[quoteId]",
         "tags": "@json_Array @json_path",
-        "outputFields": {"id": "[rejectQuoteId]"},
-        "input": "{\n    \"status\": \"QUOTE_REJECTED\" \n}",
-        "scenario": "RejectInsuranceQuote",
+        "outputFields": {"id": "[quoteId]"},
+        "input": "{\n    \"status\": \"QUOTE_ACCEPTED\" \n}",
+        "scenario": "AcceptInsuranceQuote",
         "csvson": [
-            "jsonpath=statusHistory",
-            "status",
-            "REQUEST_SUBMITTED",
-            "QUOTE_RECEIVED",
-            "QUOTE_REJECTED"
+            "statusHistory/status",
+            "REQUEST_SUBMITTED\\|QUOTE_RECEIVED\\|QUOTE_ACCEPTED\\|"
         ],
         "contentType": "application/json",
-        "scenarioId": "RejectInsuranceQuote",
+        "scenarioId": "AcceptInsuranceQuote",
         "httpStatusCode": "200"
-    },
-    {
-        "input": "select iqr.id, iq.insurance_premium_amount, iq.insurance_premium_currency, iq.policy_limit_amount from insurancequotes iq INNER JOIN insurancequoterequests iqr on iq.id = iqr.insurance_quote_id and iqr.id  =  [rejectQuoteId]",
-        "requestType": "DB",
-        "method": "SELECT",
-        "scenario": "InsuranceQuoteByDBReject",
-        "resource": "cssdb",
-        "availableParams": [{
-            "parameterType": "STORAGE_PARAM",
-            "value": "[0].policy_limit_amount",
-            "key": "policy_limit_amount"
-        }],
-        "scenarioId": "InsuranceQuoteByDBReject",
-        "tags": "@sql_select @sql_validate @store_sql_response"
     }
 ]

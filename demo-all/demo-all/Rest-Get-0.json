@@ -16,7 +16,7 @@
         "contentType": "application/json",
         "scenarioId": "ReadPerson-Simple",
         "url": "/persons/bgates",
-        "tags": "@examples",
+        "tags": "@simple-get @csvson-example",
         "httpStatusCode": "200"
     },
     {
@@ -44,7 +44,7 @@
         "contentType": "application/json",
         "scenarioId": "ReadPetByQueryparams-Simple",
         "url": "/pets/findByTags",
-        "tags": "@empty_test",
+        "tags": "@test_empty @queryparam @single-field-validation",
         "httpStatusCode": "200"
     },
     {
@@ -75,7 +75,7 @@
         "contentType": "application/json",
         "scenarioId": "ReadPetByQueryparams-Simple",
         "url": "/pets/findByTags",
-        "tags": "@test_2",
+        "tags": "@test_null  @queryparam",
         "httpStatusCode": "200"
     }
 ]

@@ -3,7 +3,7 @@ Feature: Multi-Run - Workflow
   Scenario: Load initial set of data
     Given provided all the feature level parameters from file
 
-  @ep
+  @multi-run @parametrized @simple-post @ep
   Scenario: post API Testing - api call
     Given a user perform a api action
     And add the <petId> value of the key as petId

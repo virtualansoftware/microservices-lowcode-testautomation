@@ -7,8 +7,8 @@ apiExecutor:
     inputExcel: css/customer-self-service.xlsx
     outputJsonDir: target/idaithalam
     cucumblanProperties:
-      service.api.css: http://microservices.virtualandemo.com:8080
-      service.api.quote: http://microservices.virtualandemo.com:8090
+      service.api.cssapi: http://microservices.virtualandemo.com:8080
+      service.api.quoteapi: http://microservices.virtualandemo.com:8090
     cucumblanEnvProperties:
       email: admin@example.com
       password: 1password
@@ -18,12 +18,12 @@ apiExecutor:
     outputDir: LakesideMutual/Customer-Self-Service/DB
     inputExcel: css/customer-self-service-with-db.xlsx
     cucumblanProperties:
-      service.api.css: http://microservices.virtualandemo.com:8080
-      service.api.quote: http://microservices.virtualandemo.com:8090
-      css.cucumblan.jdbc.driver-class-name: com.mysql.cj.jdbc.Driver
-      css.cucumblan.jdbc.username: demo_user
-      css.cucumblan.jdbc.password: demo_password
-      css.cucumblan.jdbc.url: jdbc:mysql://microservices.virtualandemo.com:3306/customerselfservice?useSSL=false
+      service.api.cssapi: http://microservices.virtualandemo.com:8080
+      service.api.quoteapi: http://microservices.virtualandemo.com:8090
+      cssdb.cucumblan.jdbc.driver-class-name: com.mysql.cj.jdbc.Driver
+      cssdb.cucumblan.jdbc.username: demo_user
+      cssdb.cucumblan.jdbc.password: demo_password
+      cssdb.cucumblan.jdbc.url: jdbc:mysql://microservices.virtualandemo.com:3306/customerselfservice?useSSL=false
     cucumblanEnvProperties:
       email: admin@example.com
       password: 1password
