@@ -2,7 +2,7 @@ parallelExecution: 4
 timeout:  30000
 apiExecutor:
   - reportTitle: "Lakeside Mutual - Customer Self-Service - API alone"
-    env: test
+    env: test-api
     outputDir: target/LakesideMutual/Customer-Self-Service/Excel/EXCEL
     inputExcel: css/customer-self-service.xlsx
     outputJsonDir: target/idaithalam
@@ -12,7 +12,7 @@ apiExecutor:
       service.api.customer: http://microservices.virtualandemo.com:8100
       service.api.cust: http://microservices.virtualandemo.com:8100
   - reportTitle: "Lakeside Mutual - Customer Self-Service - API alone - VIRTUALAN"
-    env: test-virtualan-collection
+    env: test-vc
     outputDir: target/LakesideMutual/Customer-Self-Service/JSON
     virtualanSpecPath: virtualan-collection
     outputJsonDir: target/idaithalam
@@ -26,7 +26,7 @@ apiExecutor:
       service.api.css: http://microservices.virtualandemo.com:8080
   - reportTitle: "Lakeside Mutual - Customer Self-Service - API and Database"
     outputJsonDir: target/idaithalam
-    env: test
+    env: test-db
     outputDir: target/LakesideMutual/Customer-Self-Service/DB
     inputExcel: css/customer-self-service-with-db.xlsx
     cucumblanProperties:
