@@ -2,7 +2,7 @@ parallelExecution: 4
 timeout:  1
 apiExecutor:
   - reportTitle: "Lakeside Mutual - Customer Self-Service - API alone"
-    env: test
+    env: test-api
     outputDir: LakesideMutual/Customer-Self-Service/EXCEL
     inputExcel: css/customer-self-service.xlsx
     outputJsonDir: target/idaithalam
@@ -14,7 +14,7 @@ apiExecutor:
       password: 1password
   - reportTitle: "Lakeside Mutual - Customer Self-Service - API and Database"
     outputJsonDir: target/idaithalam
-    env: test
+    env: test-db
     outputDir: LakesideMutual/Customer-Self-Service/DB
     inputExcel: css/customer-self-service-with-db.xlsx
     cucumblanProperties:
