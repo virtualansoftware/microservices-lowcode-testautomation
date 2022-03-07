@@ -1,6 +1,9 @@
 pipeline {
     agent any
-
+   
+    environment {
+        IDAITHALAM_EXECUTION_ENV = 'test'
+    }
 
     tools {
         maven "Maven"
