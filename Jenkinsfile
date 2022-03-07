@@ -2,7 +2,7 @@ pipeline {
     agent any
    
     environment {
-        IDAITHALAM_EXECUTION_ENV = 'test-db'
+        IDAITHALAM_EXECUTION_ENV = 'test-api'
     }
 
     tools {
