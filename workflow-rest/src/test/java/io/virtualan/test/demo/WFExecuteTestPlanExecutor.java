@@ -20,6 +20,7 @@ public class WFExecuteTestPlanExecutor {
               .invoke("Customer-Self-Service-xl.yml");
       Assert.assertTrue(isSuccess);
     } catch (Exception e) {
+      e.printStackTrace();
       Assert.assertTrue(false);
     }
   }
