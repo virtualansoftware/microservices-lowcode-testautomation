@@ -11,10 +11,10 @@ public class DemoServiceImpl implements DemoService {
     @org.springframework.beans.factory.annotation.Autowired
     private org.springframework.kafka.core.KafkaTemplate<Long, Callback> kafkaTemplate;
 
-    public String run(int id, String address) {
+    public String run(int id, String name) {
 
         Callback request = Callback.newBuilder()
-                .setTwoEvent(KafkaEventTwo.newBuilder().setNumber(id).setAddress(address).build())
+                .setTwoEvent(KafkaEventTwo.newBuilder().setNumber(id).setAddress(name).build())
                 .build();
             kafkaTemplate.send("virtualan.proto.buff.input.demo", request);
 

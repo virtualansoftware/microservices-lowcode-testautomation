@@ -12,7 +12,6 @@ import org.testng.annotations.Test;
 public class WFExecuteTestPlanExecutor {
 
 
-
   @Test
   public void workflowExecution_xl() {
     try {
@@ -20,7 +19,6 @@ public class WFExecuteTestPlanExecutor {
               .invoke("Customer-Self-Service-xl.yml");
       Assert.assertTrue(isSuccess);
     } catch (Exception e) {
-      e.printStackTrace();
       Assert.assertTrue(false);
     }
   }
