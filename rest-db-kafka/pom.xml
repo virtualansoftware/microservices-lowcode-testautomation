@@ -1,24 +1,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.virtualan</groupId>
-	<artifactId>rest-db-kafka</artifactId>
+	<artifactId>order-event-demo</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
 	<name>rest-db-kafka</name>
 	<properties>
-		<kafka-clients.version>2.8.0</kafka-clients.version>
-		<junit.version>5.5.2</junit.version>
-		<cucumber.version>6.7.0</cucumber.version>
-		<virtualan.version>1.3.0</virtualan.version>
+		<maven.compiler.source>8</maven.compiler.source>
+		<maven.compiler.target>8</maven.compiler.target>
 		<idaithalam.version>1.6.2</idaithalam.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<testng.ver>7.4.0</testng.ver>
 	</properties>
 	<description>
-		Cucumblan-message is a cucumber and selenium based test automation framework that supports Behavior Driven Development (BDD),
-		allowing users to create feature using predefined step definition with low code for messaging. I
-		t works based on the Gherkin Domain Specific Language (DSL). This simple but powerful api
-		framework while keeping it comprehensible to even non-technical(product owner, business analyst and domain
-		experts) users.
+		This project demonstrate Idaithalam can be  integrated with REST API and Kafka message validation.
+		This example order is created via POST action and then OrderCreated event is emitted from the application.
+		This will validate API request and respone then event.
 	</description>
 	<url>https://www.cucumblan.io/</url>
 	<licenses>
@@ -55,81 +51,6 @@
 		</repository>
 	</distributionManagement>
 
-	<profiles>
-		<profile>
-			<id>release</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-source-plugin</artifactId>
-						<version>3.2.0</version>
-						<executions>
-							<execution>
-								<id>attach-sources</id>
-								<goals>
-									<goal>jar</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-javadoc-plugin</artifactId>
-						<configuration>
-							<source>8</source>
-						</configuration>
-						<version>3.2.0</version>
-						<executions>
-							<execution>
-								<id>attach-javadocs</id>
-								<goals>
-									<goal>jar</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-gpg-plugin</artifactId>
-						<version>1.4</version>
-						<executions>
-							<execution>
-								<id>sign-artifacts</id>
-								<phase>verify</phase>
-								<goals>
-									<goal>sign</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>net.masterthought</groupId>
-						<artifactId>maven-cucumber-reporting</artifactId>
-						<version>5.3.0</version>
-						<executions>
-							<execution>
-								<id>execution</id>
-								<phase>install</phase>
-								<goals>
-									<goal>generate</goal>
-								</goals>
-								<configuration>
-									<projectName>Kafka Testing</projectName>
-									<skip>false</skip>
-									<outputDirectory>target/html-reports</outputDirectory>
-									<inputDirectory>${project.build.directory}</inputDirectory>
-									<jsonFiles>
-										<param>**/cucumber-*.json</param>
-									</jsonFiles>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<plugins>
@@ -144,15 +65,39 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>net.masterthought</groupId>
+				<artifactId>maven-cucumber-reporting</artifactId>
+				<version>5.3.0</version>
 				<executions>
 					<execution>
+						<id>execution</id>
+						<phase>install</phase>
 						<goals>
-							<goal>repackage</goal>
+							<goal>generate</goal>
 						</goals>
+						<configuration>
+							<projectName>Kafka Order Event Testing</projectName>
+							<skip>false</skip>
+							<outputDirectory>target/html-reports</outputDirectory>
+							<inputDirectory>${project.build.directory}</inputDirectory>
+							<jsonFiles>
+								<param>**/cucumber-*.json</param>
+							</jsonFiles>
+						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M3</version>
+				<configuration>
+					<skipTests>false</skipTests>
+					<suiteXmlFiles>
+						<suiteXmlFile>event_executor.xml</suiteXmlFile>
+					</suiteXmlFiles>
+					<testFailureIgnore>true</testFailureIgnore>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
@@ -163,133 +108,12 @@
 			<groupId>io.virtualan</groupId>
 			<artifactId>idaithalam</artifactId>
 			<version>${idaithalam.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.slf4j</groupId>
-					<artifactId>slf4j-simple</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
-
-
-		<!-- KAFKA LOCAL TESTING CONFIGURATION -->
 		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-			<version>2.12.5</version>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>${testng.ver}</version>
 		</dependency>
-
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-annotations</artifactId>
-			<version>2.12.5</version>
-		</dependency>
-
-
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.12.5</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			<version>2.5.2</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.kafka</groupId>
-			<artifactId>spring-kafka</artifactId>
-			<version>2.7.4</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.integration</groupId>
-			<artifactId>spring-integration-kafka</artifactId>
-			<version>5.5.2</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.kafka</groupId>
-			<artifactId>kafka-clients</artifactId>
-			<version>2.7.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.integration</groupId>
-			<artifactId>spring-integration-core</artifactId>
-			<version>5.5.2</version>
-		</dependency>
-
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-integration</artifactId>
-			<version>2.5.2</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<version>1.18.10</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<!--SpringFox dependencies -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.datatype</groupId>
-			<artifactId>jackson-datatype-jsr310</artifactId>
-			<version>2.11.0</version>
-		</dependency>
-		<!-- Bean Validation API support -->
-		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-			<version>2.0.0.Final</version>
-		</dependency>
-		<!-- START Virtual Service API support -->
-		<dependency>
-			<groupId>io.virtualan</groupId>
-			<artifactId>virtualization</artifactId>
-			<version>${virtualan.version}</version>
-		</dependency>
-
-		<!-- HyperSQL DB -->
-		<dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-			<version>2.5.0</version>
-		</dependency>
-		<!-- END Virtual Service API support -->
-
-		<!-- Start embedded kafka -->
-		<dependency>
-			<groupId>org.springframework.kafka</groupId>
-			<artifactId>spring-kafka-test</artifactId>
-			<version>2.7.4</version>
-		</dependency>
-
-
-		<!-- End -->
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<version>2.5.3</version>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-logging</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>ch.qos.logback</groupId>
-					<artifactId>logback-classic</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
 
 
 	</dependencies>

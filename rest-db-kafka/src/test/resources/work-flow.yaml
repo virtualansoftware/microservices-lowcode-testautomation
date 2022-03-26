@@ -1,14 +1,10 @@
 parallelExecution: 4
 timeout:  30000
 apiExecutor:
-  - reportTitle: "Kafka DB API Testing live"
+  - reportTitle: "API with Kafka Event Testing"
     env: dev
     outputJsonDir: target/idaithalam
     outputDir: target/dev/1
-    inputExcel: virtualan_collection_kafka_db_testcase_0.xlsx
+    inputExcel: Order_with_OrderCreated.xlsx
     cucumblanProperties:
-      service.api.pet: https://live.virtualandemo.com
-      employee.cucumblan.jdbc.driver-class-name: org.hsqldb.jdbc.JDBCDriver
-      employee.cucumblan.jdbc.username: SA
-      employee.cucumblan.jdbc.password: ""
-      employee.cucumblan.jdbc.url: jdbc:hsqldb:mem:dataSource
+      service.api.orderservice: http://microservices.virtualandemo.com:9001
