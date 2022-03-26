@@ -8,15 +8,15 @@ pipeline {
 
     stages {
 
-        stage ('Compile Stage') {
+        stage ('Clean Stage') {
             steps {
-                  bat 'mvn clean compile'
+                  sh 'mvn clean'
             }
         }
         stage ('Testing Stage') {
             steps {
 
-                    bat 'mvn test'
+                    sh 'mvn test'
             }
         }
 
