@@ -51,6 +51,7 @@ public class OrderMessageType implements io.virtualan.cucumblan.message.type.Mes
             org.json.JSONObject object = new org.json.JSONObject(body);
             String id = object.getString("orderNumber");
             object.put("partitionId", record.partition());
+            object.put("kafka-topic-name", record.topic());
             return new OrderMessageType(id, object.toString());
         }
 
