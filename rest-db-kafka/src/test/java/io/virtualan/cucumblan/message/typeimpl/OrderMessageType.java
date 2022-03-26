@@ -2,15 +2,15 @@ package io.virtualan.cucumblan.message.typeimpl;
 
 
 
-public class OrderCreatedMessageType implements io.virtualan.cucumblan.message.type.MessageType<String, String> {
+public class OrderMessageType implements io.virtualan.cucumblan.message.type.MessageType<String, String> {
         private String type = "OrderMessageType";
         private String id;
         private String body;
 
-        public OrderCreatedMessageType() {
+        public OrderMessageType() {
         }
 
-        public OrderCreatedMessageType(String id, String body) {
+        public OrderMessageType(String id, String body) {
             this.body = body;
             this.id = id;
         }
@@ -51,7 +51,7 @@ public class OrderCreatedMessageType implements io.virtualan.cucumblan.message.t
             org.json.JSONObject object = new org.json.JSONObject(body);
             String id = object.getString("orderNumber");
             object.put("partitionId", record.partition());
-            return new OrderCreatedMessageType(id, object.toString());
+            return new OrderMessageType(id, object.toString());
         }
 
         public String toString() {
