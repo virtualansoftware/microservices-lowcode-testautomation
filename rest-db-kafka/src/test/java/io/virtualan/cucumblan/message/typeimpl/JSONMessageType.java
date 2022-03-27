@@ -67,24 +67,25 @@ public class JSONMessageType implements io.virtualan.cucumblan.message.type.Mess
 
     public io.virtualan.cucumblan.message.type.MessageType buildProducerMessage(Object messages) throws io.virtualan.cucumblan.message.exception.MessageNotDefinedException {
         String message;
-        org.json.JSONObject body;
-        if (messages instanceof java.util.List) {
-            message = (String) ((java.util.List) messages).stream().collect(java.util.stream.Collectors.joining());
-            body = new org.json.JSONObject(message);
-            return buildMessageType(body.toString());
-        } else {
-            try {
+        try {
+            org.json.JSONObject body;
+            if (messages instanceof java.util.List) {
+                message = (String) ((java.util.List) messages).stream().collect(java.util.stream.Collectors.joining());
+                body = new org.json.JSONObject(message);
+                return buildMessageType(body.toString());
+            } else {
+
                 message = io.virtualan.mapson.Mapson.buildMAPsonAsJson((java.util.Map) messages);
                 body = new org.json.JSONObject(message);
                 return buildMessageType(body.toString());
-            } catch (io.virtualan.mapson.exception.BadInputDataException exception) {
-                throw new io.virtualan.cucumblan.message.exception.MessageNotDefinedException(exception.getMessage());
             }
+        } catch (io.virtualan.mapson.exception.BadInputDataException | io.virtualan.cucumblan.message.exception.SkipMessageException exception) {
+            throw new io.virtualan.cucumblan.message.exception.MessageNotDefinedException(exception.getMessage());
         }
     }
 
     //Mandatory
-    public io.virtualan.cucumblan.message.type.MessageType buildConsumerMessage(org.apache.kafka.clients.consumer.ConsumerRecord<String, String> record, String key, String body) throws io.virtualan.cucumblan.message.exception.MessageNotDefinedException {
+    public io.virtualan.cucumblan.message.type.MessageType buildConsumerMessage(org.apache.kafka.clients.consumer.ConsumerRecord<String, String> record, String key, String body) throws io.virtualan.cucumblan.message.exception.SkipMessageException {
         return buildMessageType(body);
     }
 
@@ -92,14 +93,20 @@ public class JSONMessageType implements io.virtualan.cucumblan.message.type.Mess
         return "JSONMessageType{type='" + this.type + '\'' + ", id=" + this.id + ", body=" + this.body + '}';
     }
 
-    public JSONMessageType buildMessageType(String body) throws io.virtualan.cucumblan.message.exception.MessageNotDefinedException {
-         JSONMessageType messageType = jsonMessageTypeMapper.entrySet()
-                .stream().filter( x -> {
-                                        String identifier = com.jayway.jsonpath.JsonPath.read(body, x.getValue().toString());
-                                if(identifier != null) return true;
-                                else return false;
-                }).map( x -> new JSONMessageType(com.jayway.jsonpath.JsonPath.read(body, x.getValue().toString()), body)).collect(java.util.stream.Collectors.toList()).get(0);
-         if(messageType != null) return messageType;
-        throw new io.virtualan.cucumblan.message.exception.MessageNotDefinedException(body);
+    public JSONMessageType buildMessageType(String body) throws io.virtualan.cucumblan.message.exception.SkipMessageException {
+        if (jsonMessageTypeMapper != null && !jsonMessageTypeMapper.isEmpty()) {
+            java.util.List<JSONMessageType> messageTypeList = jsonMessageTypeMapper.entrySet()
+                    .stream().filter(x -> {
+                        try {
+                            String identifier = com.jayway.jsonpath.JsonPath.read(body, x.getValue().toString());
+                            if (identifier != null) return true;
+                            else return false;
+                        } catch (Exception e) {
+                            return false;
+                        }
+                    }).map(x -> new JSONMessageType(com.jayway.jsonpath.JsonPath.read(body, x.getValue().toString()), body)).collect(java.util.stream.Collectors.toList());
+            if (messageTypeList != null && !messageTypeList.isEmpty()) return messageTypeList.get(0);
+        }
+        throw new io.virtualan.cucumblan.message.exception.SkipMessageException(body);
     }
 }
