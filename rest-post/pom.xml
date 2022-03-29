@@ -9,7 +9,7 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <idaithalam.version>1.6.2</idaithalam.version>
+        <idaithalam.version>1.6.3-SNAPSHOT</idaithalam.version>
         <testng.ver>7.4.0</testng.ver>
         <aspectj.version>1.8.10</aspectj.version>
     </properties>

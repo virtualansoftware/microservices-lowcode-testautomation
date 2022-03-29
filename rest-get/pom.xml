@@ -9,7 +9,7 @@
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <idaithalam.version>1.6.2</idaithalam.version>
+        <idaithalam.version>1.6.3-SNAPSHOT</idaithalam.version>
         <mysql.version>8.0.13</mysql.version>
         <testng.ver>7.4.0</testng.ver>
     </properties>

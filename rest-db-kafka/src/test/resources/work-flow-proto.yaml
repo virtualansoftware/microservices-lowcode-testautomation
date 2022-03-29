@@ -1,10 +1,17 @@
 parallelExecution: 4
 timeout:  30000
 apiExecutor:
-  - reportTitle: "API with Kafka Event Testing"
+  - reportTitle: "1. API with Kafka Event Testing With ProtoBuff"
     env: dev
     outputJsonDir: target/idaithalam
-    outputDir: target/message-proto
-    inputExcel: createOrder_API_with_OrderCreated_Event-Protobuff.xlsx
+    outputDir: target/message/customer-proto
+    inputExcel: CreateCustomer-Event.xlsx
     cucumblanProperties:
-      service.api.orderservice-proto: http://localhost:8800
+      service.api.apiservice: http://microservices.virtualandemo.com:9001
+  - reportTitle: "2. API with Kafka Event Testing With ProtoBuff"
+    env: dev
+    outputJsonDir: target/idaithalam
+    outputDir: target/message/product-proto
+    inputExcel: CreateProduct-Event.xlsx
+    cucumblanProperties:
+      service.api.apiservice: http://microservices.virtualandemo.com:9001

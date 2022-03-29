@@ -110,7 +110,7 @@ Feature: CSS-Reject-DB - Workflow
 
   @css
   Scenario: InsuranceQuoteByDBReject - database action
-    Given as a user perform sql query action
+    Given as a user perform sql Read information action
     When read details on the given query on css
       | select iqr.id, iq.insurance_premium_amount, iq.insurance_premium_currency, iq.policy_limit_amount from insurancequotes iq INNER JOIN insurancequoterequests iqr on iq.id = iqr.insurance_quote_id and iqr.id  =  [rejectQuoteId] |
     And store policy_limit_amount as key and query's [0].policy_limit_amount as value

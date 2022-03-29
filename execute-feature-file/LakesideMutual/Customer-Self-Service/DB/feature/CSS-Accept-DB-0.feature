@@ -108,10 +108,10 @@ Feature: CSS-Accept-DB - Workflow
 
   @css
   Scenario: InsuranceQuoteByDB - database action
-    Given as a user perform sql verify record action
-    When select details with the given sql verify record on css
+    Given as a user perform sql  action
+    When select details with the given sql  on css
       | select iqr.id, iq.insurance_premium_amount, iq.insurance_premium_currency, iq.policy_limit_amount from insurancequotes iq INNER JOIN insurancequoterequests iqr on iq.id = iqr.insurance_quote_id and iqr.id  =  [quoteId] |
-    Then verify details with the given sql verify record on css
+    Then verify details with the given sql  on css
       | select iqr.id, iq.insurance_premium_amount, iq.insurance_premium_currency, iq.policy_limit_amount from insurancequotes iq INNER JOIN insurancequoterequests iqr on iq.id = iqr.insurance_quote_id and iqr.id  =  [quoteId] |
       | id,insurance_premium_amount, insurance_premium_currency, policy_limit_amount                                                                                                                                               |
       | i~[quoteId],d~500.00,CHF,d~50000.00                                                                                                                                                                                        |

@@ -108,7 +108,7 @@ Feature: CSS-Accept-DB - Workflow
 
   @sql_select @sql_validate @store_sql_response @cssdb
   Scenario: InsuranceQuoteByDB - database action
-    Given as a user perform sql query action
+    Given as a user perform sql verify record action
     When read details on the given query on cssdb
       | select iqr.id, iq.insurance_premium_amount, iq.insurance_premium_currency, iq.policy_limit_amount from insurancequotes iq INNER JOIN insurancequoterequests iqr on iq.id = iqr.insurance_quote_id and iqr.id  =  [quoteId] |
     Then validate information on the given details on cssdb
