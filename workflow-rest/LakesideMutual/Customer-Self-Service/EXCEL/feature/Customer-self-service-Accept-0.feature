@@ -1,29 +1,29 @@
-Feature: Customer Self-Service-Reject - Workflow
+Feature: Customer-self-service-Accept - Workflow
 
   Scenario: Load initial set of data
     Given provided all the feature level parameters from file
 
-  @css
+  @token @okta @store-response @variable @password @sceret @workflow @cssapi
   Scenario: Customer Self-Service Auth - api call
-    Given a user perform a api action
-    And add request with given header params
+    Given as a insurance user perform login api action
+    And add content type with given header params
       | contentType | application/json |
-    And create api with given input
+    And create login information with given input
       | password | [password] |
       | email    | [email]    |
-    When a user post application/json in /auth resource on css
+    When logging in using post application/json in /auth resource on cssapi
     Then the status code is 200
-    And verify across response includes following in the response
+    And verify user email information includes following in the response
       | email | [email] |
     And store token as key and api's token as value
 
-  @css
+  @dynamic-date @dynamic-value @cssapi
   Scenario: GetCustomerByLogin - api call
     Given a user perform a api action
     And add request with given header params
       | contentType  | application/json |
       | X-Auth-Token | [token]          |
-    When a user get application/json in /user resource on css
+    When a user get application/json in /user resource on cssapi
     Then the status code is 200
     And verify across response includes following in the response
       | email | [email] |
@@ -31,13 +31,13 @@ Feature: Customer Self-Service-Reject - Workflow
     And evaluate key as expiryDate and SUBSTITUTE(TEXT(NOW()+365, "yyyy-mm-dd HH:mm:ss"), " ", "T") as function value
     And evaluate key as startDate and TEXT(TODAY(),"yyyy-mm-dd") as function value
 
-  @css
+  @store_response @workflow @create_response_variable @cssapi
   Scenario: GetCustomerInfoByCustomerId - api call
     Given a user perform a api action
     And add request with given header params
       | contentType  | application/json |
       | X-Auth-Token | [token]          |
-    When a user get application/json in /customers/[customerId] resource on css
+    When a user get application/json in /customers/[customerId] resource on cssapi
     Then the status code is 200
     And verify across response includes following in the response
       | firstname | Max |
@@ -48,8 +48,8 @@ Feature: Customer Self-Service-Reject - Workflow
     And store postalCode as key and api's postalCode as value
     And store city as key and api's city as value
 
-  @css
-  Scenario: CreateInsuranceQuoteForReject - api call
+  @pass_dynamic_variables @workflow @cssapi
+  Scenario: CreateInsuranceQuote - api call
     Given a user perform a api action
     And add request with given header params
       | contentType  | application/json |
@@ -67,13 +67,13 @@ Feature: Customer Self-Service-Reject - Workflow
       | insuranceOptions.deductible.amount        | i~500           |
       | insuranceOptions.deductible.currency      | CHF             |
       | insuranceOptions.insuranceType            | Life Insurance  |
-      | insuranceOptions.startDate                | [startDate]     |
-    When a user post application/json in /insurance-quote-requests resource on css
+      | insuranceOptions.startDate                | 2021-06-20      |
+    When a user post application/json in /insurance-quote-requests resource on cssapi
     Then the status code is 200
-    And store rejectQuoteId as key and api's id as value
+    And store quoteId as key and api's id as value
 
-  @quote
-  Scenario: ReceiveInsuranceQuoteToReject - api call
+  @workflow @dynamic_date @quoteapi
+  Scenario: ReceiveInsuranceQuote - api call
     Given a user perform a api action
     And add request with given header params
       | contentType  | application/json |
@@ -85,25 +85,23 @@ Feature: Customer Self-Service-Reject - Workflow
       | policyLimit.currency      | CHF               |
       | status                    | QUOTE_RECEIVED    |
       | expirationDate            | [expiryDate].000Z |
-    When a user patch application/json in /insurance-quote-requests/[rejectQuoteId] resource on quote
+    When a user patch application/json in /insurance-quote-requests/[quoteId] resource on quoteapi
     Then the status code is 200
     And verify across response includes following in the response
-      | id | [rejectQuoteId] |
+      | id | [quoteId] |
 
-  @css
-  Scenario: RejectInsuranceQuote - api call
+  @json_Array @json_path @cssapi
+  Scenario: AcceptInsuranceQuote - api call
     Given a user perform a api action
     And add request with given header params
       | contentType  | application/json |
       | X-Auth-Token | [token]          |
     And update api with given input
-      | status | QUOTE_REJECTED |
-    When a user patch application/json in /insurance-quote-requests/[rejectQuoteId] resource on css
+      | status | QUOTE_ACCEPTED |
+    When a user patch application/json in /insurance-quote-requests/[quoteId] resource on cssapi
     Then the status code is 200
-    And verify statusHistory response csvson includes in the response
-      | status            |
-      | REQUEST_SUBMITTED |
-      | QUOTE_RECEIVED    |
-      | QUOTE_REJECTED    |
+    And verify api response csvson includes in the response
+      | statusHistory/status                                |
+      | REQUEST_SUBMITTED\|QUOTE_RECEIVED\|QUOTE_ACCEPTED\| |
     And verify across response includes following in the response
-      | id | [rejectQuoteId] |
+      | id | [quoteId] |

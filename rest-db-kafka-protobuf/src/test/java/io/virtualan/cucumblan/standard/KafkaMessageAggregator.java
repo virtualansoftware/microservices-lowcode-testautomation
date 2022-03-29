@@ -17,7 +17,7 @@ public class KafkaMessageAggregator implements StandardProcessing {
         int count = 0;
         if(mapAggregator != null) {
             for (java.util.Map.Entry<String, Object> entry : mapAggregator.entrySet()) {
-                io.virtualan.cucumblan.message.typeimpl.JSONMessageType jsonmsg = (io.virtualan.cucumblan.message.typeimpl.JSONMessageType) entry.getValue();
+                io.virtualan.cucumblan.message.typeimpl.JSONType jsonmsg = (io.virtualan.cucumblan.message.typeimpl.JSONType) entry.getValue();
                 if ("doggie".equals(jsonmsg.getMessageAsJson().getString("name"))) {
                     count++;
                 }
