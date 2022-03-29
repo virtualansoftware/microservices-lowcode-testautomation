@@ -5,6 +5,6 @@ apiExecutor:
     env: dev
     outputJsonDir: target/idaithalam
     outputDir: target/message
-    inputExcel: createOrder_API_with_OrderCreated_Event.xlsx
+    inputExcel: CreateOrder-Event.xlsx
     cucumblanProperties:
       service.api.orderservice: http://microservices.virtualandemo.com:9001
