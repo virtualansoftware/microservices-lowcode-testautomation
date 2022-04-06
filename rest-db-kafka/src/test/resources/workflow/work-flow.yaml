@@ -4,7 +4,7 @@ apiExecutor:
   - reportTitle: "API with Kafka Event Testing"
     env: dev
     outputJsonDir: target/idaithalam
-    outputDir: target/message
-    inputExcel: CreateOrder-Event.xlsx
+    outputDir: message/order
+    inputExcel: event-xls/CreateOrder-Event.xlsx
     cucumblanProperties:
       service.api.orderservice: http://microservices.virtualandemo.com:9001

@@ -30,10 +30,10 @@ public class JSONType implements
   public static void reload() {
     try {
       java.io.InputStream stream = Thread.currentThread().getContextClassLoader()
-          .getResourceAsStream("json-messagetype.properties");
+          .getResourceAsStream("message-type/json-messagetype.properties");
       if (stream == null) {
         stream = io.virtualan.cucumblan.props.ApplicationConfiguration.class.getClassLoader()
-            .getResourceAsStream("json-messagetype.properties");
+            .getResourceAsStream("message-type/json-messagetype.properties");
       }
       if (stream != null) {
         jsonMessageTypeMapper.load(stream);

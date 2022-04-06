@@ -34,10 +34,10 @@ public class ProtobufType implements
   public static void reload() {
     try {
       java.io.InputStream stream = Thread.currentThread().getContextClassLoader()
-          .getResourceAsStream("proto-messagetype.properties");
+          .getResourceAsStream("message-type/proto-messagetype.properties");
       if (stream == null) {
         stream = io.virtualan.cucumblan.props.ApplicationConfiguration.class.getClassLoader()
-            .getResourceAsStream("proto-messagetype.properties");
+            .getResourceAsStream("message-type/proto-messagetype.properties");
       }
       if (stream != null) {
         protoMessageTypeMapper.load(stream);

@@ -4,7 +4,7 @@ apiExecutor:
   - reportTitle: "Low code/No Data Integrity Testing"
     outputJsonDir: target/idaithalam
     env: test
-    outputDir: target/DB
+    outputDir: DB
     inputExcel: db/data-integrity-testing.xlsx
     cucumblanProperties:
       employee.cucumblan.jdbc.driver-class-name: org.h2.Driver

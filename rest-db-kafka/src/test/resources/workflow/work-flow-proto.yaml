@@ -4,14 +4,14 @@ apiExecutor:
   - reportTitle: "1. API with Kafka Event Testing With ProtoBuff"
     env: dev
     outputJsonDir: target/idaithalam
-    outputDir: target/message/customer-proto
-    inputExcel: CreateCustomer-Event.xlsx
+    outputDir: message/customer-proto
+    inputExcel: event-xls/CreateCustomer-Event.xlsx
     cucumblanProperties:
       service.api.apiservice: http://microservices.virtualandemo.com:9001
   - reportTitle: "2. API with Kafka Event Testing With ProtoBuff"
     env: dev
     outputJsonDir: target/idaithalam
-    outputDir: target/message/product-proto
-    inputExcel: CreateProduct-Event.xlsx
+    outputDir: message/product-proto
+    inputExcel: event-xls/CreateProduct-Event.xlsx
     cucumblanProperties:
       service.api.apiservice: http://microservices.virtualandemo.com:9001
