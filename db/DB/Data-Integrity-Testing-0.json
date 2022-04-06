@@ -1,0 +1,51 @@
+[
+    {
+        "input": "create table employees (emp_no int, birth_date date,first_name VARCHAR(50),last_name VARCHAR(50), gender VARCHAR(50),hire_date date)",
+        "requestType": "DB",
+        "method": "DDL",
+        "scenario": "Create employee Table",
+        "resource": "employee",
+        "stepInfo": ["to define employee table"],
+        "scenarioId": "DB_CREATE",
+        "tags": "@ddl  @sql"
+    },
+    {
+        "input": "insert into employees (emp_no,birth_date,first_name,last_name, gender,hire_date) values  (1, DATE '1983-11-17','Danny', 'Ray', 'Male',DATE  '2012-03-24')",
+        "requestType": "DB",
+        "method": "INSERT",
+        "scenario": "Insert Employee info",
+        "resource": "employee",
+        "stepInfo": ["to insert employee record"],
+        "scenarioId": "DB_INSERT",
+        "tags": "@sql-insert @sql"
+    },
+    {
+        "input": "select emp_no, to_char(birth_date, 'YYYY-mm-DD') birth_date ,first_name,last_name, gender,to_char(hire_date , 'YYYY-mm-DD') hire_date from employees where emp_no = 1",
+        "requestType": "DB",
+        "method": "SELECT",
+        "scenario": "Verify record",
+        "resource": "employee",
+        "csvson": [
+            "EMP_NO,BIRTH_DATE,FIRST_NAME,LAST_NAME,GENDER,HIRE_DATE",
+            "i~1,1983-11-17,Danny,Ray,Male,2012-03-24"
+        ],
+        "availableParams": [{
+            "parameterType": "STORAGE_PARAM",
+            "value": "[0].EMP_NO",
+            "key": "empId"
+        }],
+        "stepInfo": ["verify record"],
+        "scenarioId": "DB_VERIFY",
+        "tags": "@sql-select @sql-verfiy @sql @store_sql_response"
+    },
+    {
+        "input": "delete from employees where emp_no = [empId]",
+        "requestType": "DB",
+        "method": "DELETE",
+        "scenario": "Delete record",
+        "resource": "employee",
+        "stepInfo": ["verify record"],
+        "scenarioId": "DB_DELETE",
+        "tags": "@sql-delete @sql"
+    }
+]

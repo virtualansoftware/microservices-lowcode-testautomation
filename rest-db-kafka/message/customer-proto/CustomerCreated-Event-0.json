@@ -1,0 +1,52 @@
+[
+    {
+        "requestType": "REST",
+        "method": "POST",
+        "resource": "apiservice",
+        "availableParams": [
+            {
+                "parameterType": "HEADER_PARAM",
+                "value": "application/json",
+                "key": "contentType"
+            },
+            {
+                "parameterType": "ADDIFY_PARAM",
+                "value": "TEXT(RANDBETWEEN(2001,5000),\"0\")",
+                "key": "customerId"
+            }
+        ],
+        "url": "/customer/5",
+        "tags": "@simple-post",
+        "input": "{\n    \"customerId\": \"[customerId]\",\n    \"firstname\": \"Ronnie\",\n    \"lastname\": \"Sander\"\n  }",
+        "scenario": "Create Customer",
+        "csvson": [
+            "customerId,firstname,lastname",
+            "i~[customerId],Ronnie,Sander"
+        ],
+        "stepInfo": [
+            "As a user needs to",
+            "create customer",
+            "details",
+            "customer",
+            "user"
+        ],
+        "contentType": "application/json",
+        "scenarioId": "CREATE_CUSTOMER",
+        "httpStatusCode": "201"
+    },
+    {
+        "identifier": "[customerId]",
+        "requestType": "KAFKA",
+        "messageType": "ProtobufType",
+        "scenario": "Validate created customer event",
+        "resource": "proto",
+        "csvson": [
+            "customerId_,firstname_,lastname_",
+            "i~[customerId],Ronnie,Sander"
+        ],
+        "stepInfo": ["contains customer information"],
+        "event": "CustomerCreated",
+        "scenarioId": "VERIFY_CUSTOMER_CREATED_EVENT",
+        "tags": "@validate_kafka_protobuff_message"
+    }
+]
