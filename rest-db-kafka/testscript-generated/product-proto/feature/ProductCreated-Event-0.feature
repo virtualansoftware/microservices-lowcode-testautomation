@@ -18,6 +18,6 @@ Feature: ProductCreated-Event - Workflow
     And verify api response csvson includes in the response
       | productId,productName,productDesc                                                                                                                                       |
       | i~[productId],Dell Inspiron 3583 15,Laptop Intel Celeron – 128GB SSD – 4GB DDR4 – 1.6GHz - Intel UHD Graphics 610 - Windows 10 Home in S Mode - Inspiron 15 3000 Series |
-    And verify contains order information for event ProductCreated contains [productId] on proto with type ProtobufType
+    And verify contains product information for event ProductCreated contains [productId] on proto with type ProtobufType
       | productId_,productName_,productDesc_                                                                                                                                    |
       | i~[productId],Dell Inspiron 3583 15,Laptop Intel Celeron – 128GB SSD – 4GB DDR4 – 1.6GHz - Intel UHD Graphics 610 - Windows 10 Home in S Mode - Inspiron 15 3000 Series |

@@ -28,7 +28,8 @@
             "create product",
             "details",
             "product",
-            "user"
+            "user",
+            "contains product information in api"
         ],
         "contentType": "application/json",
         "scenarioId": "CREATE_PRODUCT",
@@ -44,7 +45,7 @@
             "productId_,productName_,productDesc_",
             "i~[productId],Dell Inspiron 3583 15,Laptop Intel Celeron \u2013 128GB SSD \u2013 4GB DDR4 \u2013 1.6GHz - Intel UHD Graphics 610 - Windows 10 Home in S Mode - Inspiron 15 3000 Series"
         ],
-        "stepInfo": ["contains order information"],
+        "stepInfo": ["contains product information"],
         "event": "ProductCreated",
         "scenarioId": "VERIFY_PRODUCT_CREATED_EVENT",
         "tags": "@validate_kafka_message @IncludesByPath"
