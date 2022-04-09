@@ -1,2 +1,5 @@
-How to integrate in KAFKA:
-1. Create Java project
+## How to integrate in KAFKA:
+
+-- Refer following tutorials for details --
+
+https://tutorials.virtualan.io/#/Idaithalam-kafka
