@@ -1,1 +1,1 @@
--p,io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm,--tags,@idai or (@simple-post and @simple-direct-response)
+-p,io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm,--tags,@aggregate or @idai or (@simple-post and @simple-direct-response)
