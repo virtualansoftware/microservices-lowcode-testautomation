@@ -8,4 +8,5 @@ apiExecutor:
     outputJsonDir: target/idaithalam
     cucumblanProperties:
       service.api.endpoint: https://live.virtualandemo.com/api
+      service.api.pdf: https://tutorials.virtualan.io
       service.api.idai: http://microservices.virtualandemo.com:8900

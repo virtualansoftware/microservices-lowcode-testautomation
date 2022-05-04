@@ -17,7 +17,7 @@ public class PDFConverter implements StandardProcessing {
 
     @Override
     public String getType() {
-        return "PDF_PARSER";
+        return "PDF_TEMPLATE";
     }
 
     @Override
