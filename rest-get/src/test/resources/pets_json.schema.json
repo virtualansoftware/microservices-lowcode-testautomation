@@ -1,62 +1,69 @@
 {
-  "$id": "https://virtualan.io/pets_json.schema.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Pet",
-  "description": "Pet",
-  "required": [
-    "id",
-    "name"
-  ],
+  "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "properties": {
+    "photoUrls": {
+      "type": "array",
+      "items": [
+        {
+          "type": "string"
+        }
+      ]
+    },
     "name": {
       "type": "string"
     },
     "id": {
       "type": "integer"
     },
+    "category": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "name",
+        "id"
+      ]
+    },
     "status": {
       "type": "string"
     },
-    "category": {
-      "type": "object",
-      "$ref": "#/$defs/category"
+    "status1": {
+      "type": "string"
     },
     "tags": {
       "type": "array",
-      "items": {
-        "$ref": "#/$defs/tag"
-      }
-    },
-    "photoUrls": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "name",
+            "id"
+          ]
+        }
+      ]
     }
   },
-  "$defs": {
-    "category": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer"
-        },
-        "name": {
-          "type": "string"
-        }
-      }
-    },
-    "tag": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "integer"
-        },
-        "name": {
-          "type": "string"
-        }
-      }
-    }
-  }
+  "required": [
+    "photoUrls",
+    "name",
+    "id",
+    "category",
+    "status",
+    "tags"
+  ]
 }
