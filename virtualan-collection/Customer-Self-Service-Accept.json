@@ -2,7 +2,6 @@
     {
         "requestType": "REST",
         "method": "POST",
-        "formFunctionVariables": [],
         "resource": "css",
         "availableParams": [
             {
@@ -18,25 +17,10 @@
         ],
         "rule": [],
         "url": "/auth",
-        "outputField": [{
-            "index": 0,
-            "value": "[email]",
-            "key": "email"
-        }],
         "outputFields": {"email": "[email]"},
-        "cookieVariables": [],
         "input": "{\"email\":\"[email]\",\"password\":\"[password]\"}",
-        "addifyVariables": [],
-        "requestHeaders": [],
         "scenario": "Customer Self-Service Auth",
         "csvson": [],
-        "evaluateFunctionVariables": [],
-        "csvsonLine": "",
-        "storeResponseVariables": [{
-            "index": 0,
-            "value": "token",
-            "key": "token"
-        }],
         "scenarioId": "CustomerSelfServiceAuth",
         "contentType": "application/json",
         "httpStatusCode": "200"
@@ -233,58 +217,6 @@
             "REQUEST_SUBMITTED\\|QUOTE_RECEIVED\\|QUOTE_ACCEPTED\\|"
         ],
         "scenarioId": "AcceptInsuranceQuote",
-        "contentType": "application/json",
-        "httpStatusCode": "200"
-    },
-    {
-        "requestType": "REST",
-        "method": "POST",
-        "resource": "css",
-        "availableParams": [
-            {
-                "parameterType": "HEADER_PARAM",
-                "value": "application/json",
-                "key": "contentType"
-            },
-            {
-                "parameterType": "STORAGE_PARAM",
-                "value": "token",
-                "key": "token"
-            }
-        ],
-        "rule": [],
-        "url": "/auth",
-        "outputFields": {"email": "[email]"},
-        "input": "{\"email\":\"[email]\",\"password\":\"[password]\"}",
-        "scenario": "Customer Self-Service Auth-Elanj",
-        "csvson": [],
-        "scenarioId": "CustomerSelfServiceAuth-ELAN",
-        "contentType": "application/json",
-        "httpStatusCode": "200"
-    },
-    {
-        "requestType": "REST",
-        "method": "POST",
-        "resource": "css",
-        "availableParams": [
-            {
-                "parameterType": "HEADER_PARAM",
-                "value": "application/json",
-                "key": "contentType"
-            },
-            {
-                "parameterType": "STORAGE_PARAM",
-                "value": "token",
-                "key": "token"
-            }
-        ],
-        "rule": [],
-        "url": "/auth",
-        "outputFields": {"email": "[email]"},
-        "input": "{\"email\":\"[email]\",\"password\":\"[password]\"}",
-        "scenario": "Customer Self-Service Auth-Elan",
-        "csvson": [],
-        "scenarioId": "CustomerSelfServiceAuth-Elanj",
         "contentType": "application/json",
         "httpStatusCode": "200"
     }
