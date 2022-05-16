@@ -2,6 +2,7 @@
     {
         "requestType": "REST",
         "method": "POST",
+        "formFunctionVariables": [],
         "resource": "css",
         "availableParams": [
             {
@@ -17,10 +18,25 @@
         ],
         "rule": [],
         "url": "/auth",
+        "outputField": [{
+            "index": 0,
+            "value": "[email]",
+            "key": "email"
+        }],
         "outputFields": {"email": "[email]"},
+        "cookieVariables": [],
         "input": "{\"email\":\"[email]\",\"password\":\"[password]\"}",
+        "addifyVariables": [],
+        "requestHeaders": [],
         "scenario": "Customer Self-Service Auth",
         "csvson": [],
+        "evaluateFunctionVariables": [],
+        "csvsonLine": "",
+        "storeResponseVariables": [{
+            "index": 0,
+            "value": "token",
+            "key": "token"
+        }],
         "scenarioId": "CustomerSelfServiceAuth",
         "contentType": "application/json",
         "httpStatusCode": "200"
@@ -146,7 +162,7 @@
         "url": "/insurance-quote-requests",
         "outputFields": {},
         "input": "{\n    \"statusHistory\": [],\n    \"customerInfo\": {\n        \"customerId\": \"[customerId]\",\n        \"firstname\": \"[firstname]\",\n        \"lastname\": \"[lastname]\",\n        \"contactAddress\": {\n            \"streetAddress\": \"[streetAddress]\",\n            \"postalCode\": \"[postalCode]\",\n            \"city\": \"[city]\"\n        },\n        \"billingAddress\": {\n            \"streetAddress\": \"[streetAddress]\",\n            \"postalCode\": \"[postalCode]\",\n            \"city\": \"[city]\"\n        }\n    },\n    \"insuranceOptions\": {\n        \"startDate\": \"[startDate]\",\n        \"insuranceType\": \"[insuranceType]\",\n        \"deductible\": {\n            \"amount\": 500,\n            \"currency\": \"CHF\"\n        }\n    }\n}",
-        "scenario": "CreateInsuranceQuote-CREATE",
+        "scenario": "CreateInsuranceQuote",
         "csvson": [],
         "scenarioId": "CreateInsuranceQuote",
         "contentType": "application/json",
