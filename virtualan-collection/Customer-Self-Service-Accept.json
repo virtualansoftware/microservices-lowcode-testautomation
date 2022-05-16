@@ -19,7 +19,7 @@
         "url": "/auth",
         "outputFields": {"email": "[email]"},
         "input": "{\"email\":\"[email]\",\"password\":\"[password]\"}",
-        "scenario": "Customer Self-Service Auth-1",
+        "scenario": "Customer Self-Service Auth",
         "csvson": [],
         "scenarioId": "CustomerSelfServiceAuth",
         "contentType": "application/json",
