@@ -26,7 +26,7 @@ public class LakesideMutualExecuteTestPlanExecutor {
   public void workflowExecution_1() {
     try {
       boolean isSuccess = VirtualanTestPlanExecutor
-          .invoke("lakeside-Mutual-Customer-Self-Service.yml");
+          .invoke("workflow/lakeside-Mutual-Customer-Self-Service.yml");
       Assert.assertTrue(isSuccess);
     } catch (InterruptedException e) {
       e.printStackTrace();

@@ -1,0 +1,19 @@
+parallelExecution: 4
+timeout:  30000
+apiExecutor:
+  - reportTitle: "Lakeside Mutual - Customer Self-Service - API alone - VIRTUALAN"
+    env: test-vc
+    outputDir: target/LakesideMutual/Customer-Self-Service/JSON
+    virtualanSpecPath: virtualan-collection
+    outputJsonDir: target/idaithalam
+    cucumblanProperties:
+      service.api.api: https://live.virtualandemo.com
+      service.api.cust: http://microservices.virtualandemo.com:8100
+      virtualan.data.load: Customer-Self-Service-Accept.json;Customer-Self-Service-Reject.json;Examples.json;
+      virtualan.data.type: VIRTUALAN
+      service.api.quote: http://microservices.virtualandemo.com:8090
+      service.api.customer: http://microservices.virtualandemo.com:8100
+      service.api.css: http://microservices.virtualandemo.com:8080
+    cucumblanEnvProperties:
+      email: admin@example.com
+      password: 1password
