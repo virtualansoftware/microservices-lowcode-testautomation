@@ -1,4 +1,4 @@
-Feature: POSTUserMessage-Event - Workflow
+Feature: SendUserMessage-Event - Workflow
 
   Scenario: Load initial set of data
     Given provided all the feature level parameters from file

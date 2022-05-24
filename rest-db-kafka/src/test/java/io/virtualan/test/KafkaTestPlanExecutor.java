@@ -27,13 +27,13 @@ public class KafkaTestPlanExecutor {
         }
     }
 
-//    @org.testng.annotations.Test
-//    public void execute_userEvent_avro_workflow() {
-//        try {
-//            boolean isSuccess = VirtualanTestPlanExecutor.invoke("workflow/work-flow-avro.yaml");
-//            Assert.assertTrue(isSuccess);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
+    @org.testng.annotations.Test
+    public void execute_userEvent_avro_workflow() {
+        try {
+            boolean isSuccess = VirtualanTestPlanExecutor.invoke("workflow/work-flow-avro.yaml");
+            Assert.assertTrue(isSuccess);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

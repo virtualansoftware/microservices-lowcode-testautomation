@@ -18,10 +18,7 @@ apiExecutor:
         session.timeout.ms: 30000
         auto.offset.reset: earliest
     topicProperties:
-      OrderCreated: dev01.orderCreated
       CustomerCreated: dev01.customerCreated
-      ProductCreated: dev01.productCreated
-      UserCreated: dev01.userCreated
   - reportTitle: "2. API with Kafka Event Testing With ProtoBuff"
     env: dev
     outputJsonDir: target/idaithalam
@@ -39,7 +36,4 @@ apiExecutor:
         session.timeout.ms: 30000
         auto.offset.reset: earliest
     topicProperties:
-      OrderCreated: dev01.orderCreated
-      CustomerCreated: dev01.customerCreated
       ProductCreated: dev01.productCreated
-      UserCreated: dev01.userCreated

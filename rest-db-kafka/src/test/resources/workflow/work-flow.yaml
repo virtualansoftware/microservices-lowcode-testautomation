@@ -24,7 +24,3 @@ apiExecutor:
         value.serializer: org.apache.kafka.common.serialization.StringSerializer
     topicProperties:
       OrderCreated: dev01.orderCreated
-      CustomerCreated: dev01.customerCreated
-      ProductCreated: dev01.productCreated
-      StudentCreated: dev01.studentCreated
-      UserCreated: dev01.userCreated
