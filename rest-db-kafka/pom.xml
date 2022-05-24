@@ -10,7 +10,7 @@
 		<maven.compiler.target>8</maven.compiler.target>
 		<idaithalam.version>1.7.0</idaithalam.version>
 		<testng.ver>7.4.0</testng.ver>
-		<avro.version>1.9.2</avro.version>
+		<avro.version>1.11.0</avro.version>
 	</properties>
 	<description>
 		This project demonstrate Idaithalam can be  integrated with REST API and Kafka message validation.
@@ -139,7 +139,7 @@
 			<plugin>
 				<groupId>org.apache.avro</groupId>
 				<artifactId>avro-maven-plugin</artifactId>
-				<version>1.9.1</version>
+				<version>${avro.version}</version>
 				<executions>
 					<execution>
 						<phase>generate-sources</phase>

@@ -11,12 +11,10 @@ import org.apache.avro.generic.GenericDatumReader;
 import org.apache.avro.generic.GenericDatumWriter;
 import org.apache.avro.generic.GenericRecord;
 import org.apache.avro.io.*;
-import org.apache.avro.reflect.ReflectDatumWriter;
 import org.codehaus.plexus.util.StringOutputStream;
 
 import java.io.*;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Map.Entry;
 
 public class AvroType implements
