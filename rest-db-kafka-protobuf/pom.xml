@@ -10,7 +10,7 @@
 		<junit.version>5.5.2</junit.version>
 		<cucumber.version>6.7.0</cucumber.version>
 		<virtualan.version>1.3.0</virtualan.version>
-		<idaithalam.version>1.6.4</idaithalam.version>
+		<idaithalam.version>1.7.0</idaithalam.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<description>

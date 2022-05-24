@@ -8,6 +8,20 @@ apiExecutor:
     inputExcel: event-xls/CreateCustomer-Event.xlsx
     cucumblanProperties:
       service.api.apiservice: http://microservices.virtualandemo.com:9001
+    consumers:
+      proto:
+        bootstrap.servers: microservices.virtualandemo.com:9092
+        key.deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        value.deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+        enable.auto.commit: true
+        auto.commit.interval.ms: 1000
+        session.timeout.ms: 30000
+        auto.offset.reset: earliest
+    topicProperties:
+      OrderCreated: dev01.orderCreated
+      CustomerCreated: dev01.customerCreated
+      ProductCreated: dev01.productCreated
+      UserCreated: dev01.userCreated
   - reportTitle: "2. API with Kafka Event Testing With ProtoBuff"
     env: dev
     outputJsonDir: target/idaithalam
@@ -15,3 +29,17 @@ apiExecutor:
     inputExcel: event-xls/CreateProduct-Event.xlsx
     cucumblanProperties:
       service.api.apiservice: http://microservices.virtualandemo.com:9001
+    consumers:
+      proto:
+        bootstrap.servers: microservices.virtualandemo.com:9092
+        key.deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        value.deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+        enable.auto.commit: true
+        auto.commit.interval.ms: 1000
+        session.timeout.ms: 30000
+        auto.offset.reset: earliest
+    topicProperties:
+      OrderCreated: dev01.orderCreated
+      CustomerCreated: dev01.customerCreated
+      ProductCreated: dev01.productCreated
+      UserCreated: dev01.userCreated
