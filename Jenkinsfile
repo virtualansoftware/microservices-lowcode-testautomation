@@ -16,7 +16,7 @@ pipeline {
         stage ('Testing Stage') {
             steps {
 
-                    bat 'mvn test'
+                    bat 'mvn generate-sources test'
             }
         }
 
