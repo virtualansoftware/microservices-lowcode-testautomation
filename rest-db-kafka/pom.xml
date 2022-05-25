@@ -84,6 +84,38 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<groupId>io.virtualan</groupId>
+				<artifactId>testscripts-generator</artifactId>
+				<version>0.1.0</version>
+				<configuration>
+					<generatedBasedir>src/test/java</generatedBasedir>
+					<workflowScripts>
+						<KafkaTestPlanExecutor>
+							<property>
+								<name>execute_orderEvent_workflow</name>
+								<value>workflow/work-flow.yaml</value>
+							</property>
+							<property>
+								<name>execute_orderEvent_protobuff_workflow</name>
+								<value>workflow/work-flow-proto.yaml</value>
+							</property>
+							<property>
+								<name>execute_userEvent_avro_workflow</name>
+								<value>workflow/work-flow-avro.yaml</value>
+							</property>
+						</KafkaTestPlanExecutor>
+					</workflowScripts>
+				</configuration>
+				<executions>
+					<execution>
+						<id>test-generator</id>
+						<goals>
+							<goal>generateTest</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
 				<groupId>net.masterthought</groupId>
 				<artifactId>maven-cucumber-reporting</artifactId>
 				<version>5.3.0</version>

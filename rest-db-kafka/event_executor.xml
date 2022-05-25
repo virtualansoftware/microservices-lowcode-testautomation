@@ -3,7 +3,7 @@
 <suite name="End-2-End API automation Suite">
     <test name="End-2-End API automation Suite" >
         <classes >
-            <class name="io.virtualan.test.KafkaTestPlanExecutor" />
+            <class name="io.virtualan.idaithalam.test.KafkaTestPlanExecutor" />
         </classes>
     </test>
 </suite>
