@@ -1,0 +1,35 @@
+[
+    {
+        "input": "{\n  \"photoUrls\": [\n    \"string\"\n  ],\n  \"name\": \"doggie\",\n  \"id\": 100,\n  \"category\": {\n    \"name\": \"string\",\n    \"id\": 100\n  },\n  \"status\": \"available\",\n  \"tags\": [\n    {\n      \"name\": \"string\",\n      \"id\": 0\n    }\n  ]\n}",
+        "requestType": "KAFKA",
+        "messageType": "JsonSchemaType",
+        "scenario": "Create Pet",
+        "resource": "jsonschema",
+        "stepInfo": [
+            "As a user needs to",
+            "create pet",
+            "details",
+            "pet",
+            "pet",
+            "contains pet information in api"
+        ],
+        "event": "PetCreated",
+        "scenarioId": "SEND_PET",
+        "tags": "@simple-kafka-send"
+    },
+    {
+        "identifier": "100",
+        "requestType": "KAFKA",
+        "messageType": "JsonSchemaType",
+        "scenario": "Validate created pet event",
+        "resource": "jsonschema",
+        "csvson": [
+            "id,name,status",
+            "i~100,doggie,available"
+        ],
+        "stepInfo": ["contains pet information"],
+        "event": "PetCreated",
+        "scenarioId": "VERIFY_PET_CREATED_EVENT",
+        "tags": "@validate_kafka_jsonschema_message @IncludesByPath"
+    }
+]

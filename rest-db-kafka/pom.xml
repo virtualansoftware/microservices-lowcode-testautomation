@@ -103,6 +103,10 @@
 								<name>execute_userEvent_avro_workflow</name>
 								<value>workflow/work-flow-avro.yaml</value>
 							</property>
+							<property>
+								<name>execute_PetEvent_jsonschema_workflow</name>
+								<value>workflow/work-flow-jsonschema.yaml</value>
+							</property>
 						</KafkaTestPlanExecutor>
 					</workflowScripts>
 				</configuration>
@@ -186,6 +190,22 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.jsonschema2pojo</groupId>
+				<artifactId>jsonschema2pojo-maven-plugin</artifactId>
+				<version>1.0.2</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<sourceDirectory>${basedir}/src/main/resources/jsonschema</sourceDirectory>
+					<targetPackage>io.virtualan.jsonschema</targetPackage>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 	<dependencies>
@@ -209,6 +229,11 @@
 		<dependency>
 			<groupId>io.confluent</groupId>
 			<artifactId>kafka-avro-serializer</artifactId>
+			<version>7.1.1</version>
+		</dependency>
+		<dependency>
+			<groupId>io.confluent</groupId>
+			<artifactId>kafka-json-schema-serializer</artifactId>
 			<version>7.1.1</version>
 		</dependency>
 		<dependency>

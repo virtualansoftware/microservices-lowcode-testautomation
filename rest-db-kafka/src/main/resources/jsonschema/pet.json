@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "id": "urn:jsonschema:io:virtualan:jsonschema:Pet",
+  "properties": {
+    "photoUrls": {
+      "type": "array",
+      "items": [
+        {
+          "type": "string"
+        }
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "id": {
+      "type": "integer"
+    },
+    "category": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "name",
+        "id"
+      ]
+    },
+    "status": {
+      "type": "string"
+    },
+    "status1": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "id": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "name",
+            "id"
+          ]
+        }
+      ]
+    }
+  },
+  "required": [
+    "photoUrls",
+    "name",
+    "id",
+    "category",
+    "status",
+    "tags"
+  ]
+}
