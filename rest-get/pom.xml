@@ -44,6 +44,30 @@
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>io.virtualan</groupId>
+                <artifactId>testscripts-generator</artifactId>
+                <version>0.1.0</version>
+                <configuration>
+                    <generatedBasedir>src/test/java</generatedBasedir>
+                    <workflowScripts>
+                        <RestTestPlanExecutor>
+                            <property>
+                                <name>workflowExecution_xl</name>
+                                <value>rest-get.yml</value>
+                            </property>
+                        </RestTestPlanExecutor>
+                    </workflowScripts>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>test-generator</id>
+                        <goals>
+                            <goal>generateTest</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>
