@@ -10,13 +10,13 @@ pipeline {
 
         stage ('Clean Stage') {
             steps {
-                  sh 'mvn clean'
+                  bat 'mvn clean'
             }
         }
         stage ('Testing Stage') {
             steps {
 
-                    sh 'mvn test'
+                    bat 'mvn test'
             }
         }
 
