@@ -17,3 +17,6 @@ target/
 
 # allure
 .allure
+
+# generated code
+src/gen/java

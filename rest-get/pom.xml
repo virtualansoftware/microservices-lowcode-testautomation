@@ -40,11 +40,29 @@
                 </configuration>
             </plugin>
             <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/gen/java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>io.virtualan</groupId>
                 <artifactId>testscripts-generator</artifactId>
                 <version>0.1.0</version>
                 <configuration>
-                    <generatedBasedir>src/test/java</generatedBasedir>
+                    <generatedBasedir>src/gen/java</generatedBasedir>
                     <workflowScripts>
                         <RestTestPlanExecutor>
                             <property>
