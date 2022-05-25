@@ -16,7 +16,7 @@ pipeline {
         stage ('Testing Stage') {
             steps {
 
-                    sh 'mvn test'
+                    sh 'mvn clean generate-sources test'
             }
         }
 
