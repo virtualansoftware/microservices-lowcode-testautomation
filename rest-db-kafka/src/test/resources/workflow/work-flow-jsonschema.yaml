@@ -1,0 +1,26 @@
+parallelExecution: 4
+timeout:  30000
+apiExecutor:
+  - reportTitle: "API with Kafka Event Testing JSON Schema"
+    env: dev
+    outputJsonDir: target/idaithalam
+    outputDir: testscript-generated/pet-jsonschema
+    inputExcel: event-xls/CreatePet-Event.xlsx
+    consumers:
+      jsonschema:
+        bootstrap.servers: microservices.virtualandemo.com:9092
+        key.deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        value.deserializer: io.confluent.kafka.serializers.json.KafkaJsonSchemaDeserializer
+        enable.auto.commit: true
+        auto.commit.interval.ms: 1000
+        session.timeout.ms: 30000
+        auto.offset.reset: earliest
+        schema.registry.url: http://microservices.virtualandemo.com:8081
+    producers:
+      jsonschema:
+        bootstrap.servers: microservices.virtualandemo.com:9092
+        key.serializer: org.apache.kafka.common.serialization.StringSerializer
+        value.serializer: io.confluent.kafka.serializers.json.KafkaJsonSchemaSerializer
+        schema.registry.url: http://microservices.virtualandemo.com:8081
+    topicProperties:
+      PetCreated: dev01.petCreated
