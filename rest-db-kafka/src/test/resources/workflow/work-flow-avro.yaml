@@ -7,23 +7,23 @@ apiExecutor:
     outputDir: testscript-generated/user-avro
     inputExcel: event-xls/CreateUser-Event.xlsx
     cucumblanProperties:
-      service.api.user: http://microservices.virtualandemo.com:9080
+      service.api.user: http://kafka.virtualandemo.com:9080
     consumers:
       avro:
-        bootstrap.servers: microservices.virtualandemo.com:9092
+        bootstrap.servers: kafka.virtualandemo.com:9092
         key.deserializer: org.apache.kafka.common.serialization.StringDeserializer
         value.deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
         enable.auto.commit: true
         auto.commit.interval.ms: 1000
         session.timeout.ms: 30000
         auto.offset.reset: earliest
-        schema.registry.url: http://microservices.virtualandemo.com:8081
+        schema.registry.url: http://kafka.virtualandemo.com:8081
         value.deserializer.specific.avro.reader: true
     producers:
       avro:
-        bootstrap.servers: microservices.virtualandemo.com:9092
+        bootstrap.servers: kafka.virtualandemo.com:9092
         key.serializer: org.apache.kafka.common.serialization.StringSerializer
         value.serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
-        schema.registry.url: http://microservices.virtualandemo.com:8081
+        schema.registry.url: http://kafka.virtualandemo.com:8081
     topicProperties:
       UserCreated: dev01.userCreated

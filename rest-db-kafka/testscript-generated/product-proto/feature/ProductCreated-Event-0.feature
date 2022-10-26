@@ -13,7 +13,7 @@ Feature: ProductCreated-Event - Workflow
       | productDesc | Laptop Intel Celeron – 128GB SSD – 4GB DDR4 – 1.6GHz - Intel UHD Graphics 610 - Windows 10 Home in S Mode - Inspiron 15 3000 Series |
       | productId   | [productId]                                                                                                                         |
       | productName | Dell Inspiron 3583 15                                                                                                               |
-    When user post application/json in /product/5 resource on apiservice
+    When user post application/json in /product/0 resource on apiservice
     Then the status code is 201
     And verify api response csvson includes in the response
       | productId,productName,productDesc                                                                                                                                       |
