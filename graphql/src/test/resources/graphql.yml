@@ -7,4 +7,4 @@ apiExecutor:
     inputExcel: graphql/graphql.xlsx
     outputJsonDir: target/idaithalam
     cucumblanProperties:
-      service.api.graphql: http://microservices.virtualandemo.com:8091
+      service.api.graphql: http://graphql.virtualandemo.com:8091

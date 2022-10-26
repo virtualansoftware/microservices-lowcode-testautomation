@@ -117,14 +117,14 @@
 								<name>execute_orderEvent_protobuff_workflow</name>
 								<value>workflow/work-flow-proto.yaml</value>
 							</property>
-							<property>
-								<name>execute_userEvent_avro_workflow</name>
-								<value>workflow/work-flow-avro.yaml</value>
-							</property>
-							<property>
-								<name>execute_PetEvent_jsonschema_workflow</name>
-								<value>workflow/work-flow-jsonschema.yaml</value>
-							</property>
+<!--							<property>-->
+<!--								<name>execute_userEvent_avro_workflow</name>-->
+<!--								<value>workflow/work-flow-avro.yaml</value>-->
+<!--							</property>-->
+<!--							<property>-->
+<!--								<name>execute_PetEvent_jsonschema_workflow</name>-->
+<!--								<value>workflow/work-flow-jsonschema.yaml</value>-->
+<!--							</property>-->
 						</KafkaTestPlanExecutor>
 					</workflowScripts>
 				</configuration>

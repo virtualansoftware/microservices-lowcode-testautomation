@@ -7,10 +7,10 @@ apiExecutor:
     outputDir: testscript-generated/order
     inputExcel: event-xls/CreateOrder-Event.xlsx
     cucumblanProperties:
-      service.api.orderservice: http://microservices.virtualandemo.com:9001
+      service.api.orderservice: http://kafka.virtualandemo.com:9001
     consumers:
       json:
-        bootstrap.servers: microservices.virtualandemo.com:9092
+        bootstrap.servers: kafka.virtualandemo.com:9092
         key.deserializer: org.apache.kafka.common.serialization.StringDeserializer
         value.deserializer: org.apache.kafka.common.serialization.StringDeserializer
         enable.auto.commit: true
@@ -19,7 +19,7 @@ apiExecutor:
         auto.offset.reset: earliest
     producers:
       json:
-        bootstrap.servers: microservices.virtualandemo.com:9092
+        bootstrap.servers: kafka.virtualandemo.com:9092
         key.serializer: org.apache.kafka.common.serialization.StringSerializer
         value.serializer: org.apache.kafka.common.serialization.StringSerializer
     topicProperties:
